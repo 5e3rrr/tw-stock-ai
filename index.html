@@ -33,10 +33,10 @@
     }
   </style>
 </head>
-<body class="bg-tradeBg text-slate-100 min-h-screen">
+<body class="bg-tradeBg text-slate-100 min-h-screen pb-16">
 
   <!-- 頂部 Navigation & 模式切換 -->
-  <header class="border-b border-tradeBorder bg-tradeCard/80 backdrop-blur sticky top-0 z-50">
+  <header class="border-b border-tradeBorder bg-tradeCard/90 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
       <div class="flex items-center space-x-3">
         <div class="h-3 w-3 rounded-full bg-emerald-500 animate-ping"></div>
@@ -54,16 +54,16 @@
       </div>
 
       <div class="text-xs text-slate-400 font-mono-num">
-        定盤時間：<span id="update-time" class="text-slate-200">2026/09/11 08:00:00</span>
+        定盤時間：<span id="update-time" class="text-slate-200">--</span>
       </div>
     </div>
   </header>
 
   <!-- 主內容容器 -->
-  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
 
     <!-- ==================== 模組 A：盤前監控儀表板 (Pre-Market) ==================== -->
-    <div id="view-premarket" class="space-y-6">
+    <div id="view-premarket" class="space-y-8 block">
 
       <!-- AI 盤前速報 -->
       <div class="bg-gradient-to-r from-blue-950/40 via-tradeCard to-tradeCard border border-accentBlue/30 rounded-2xl p-5 shadow-xl">
@@ -72,93 +72,98 @@
           <span>GEMINI 3.6 盤前智能操盤戰報</span>
         </div>
         <p id="pre-ai-brief" class="text-slate-300 text-sm leading-relaxed">
-          資料載入中...
+          盤前數據加載中...
         </p>
       </div>
 
       <!-- Section 1：核心客觀宏觀指標（4 格黃金配置） -->
       <div>
-        <h2 class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
+        <div class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
           <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 1: 核心全球宏觀指標
-        </h2>
+        </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- 美元指數 -->
+          <!-- 1. 美元指數 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
             <div class="text-slate-400 text-xs">美元指數 (DXY)</div>
             <div id="val-dxy" class="text-2xl font-bold font-mono-num mt-1">--</div>
             <div id="chg-dxy" class="text-xs font-mono-num mt-1 font-semibold">--</div>
           </div>
-          <!-- 亞幣與台幣 -->
+          <!-- 2. 美元/台幣 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
             <div class="text-slate-400 text-xs">美元/台幣匯率 (USD/TWD)</div>
             <div id="val-usdtwd" class="text-2xl font-bold font-mono-num mt-1">--</div>
             <div id="chg-usdtwd" class="text-xs font-mono-num mt-1 font-semibold">--</div>
           </div>
-          <!-- 10年期美債殖利率 -->
+          <!-- 3. 10年期美債殖利率 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
             <div class="text-slate-400 text-xs">美國10年期公債殖利率 (^TNX)</div>
-            <div id="val-us10y" class="text-2xl font-bold font-mono-num mt-1">--%</div>
+            <div id="val-us10y" class="text-2xl font-bold font-mono-num mt-1">--</div>
             <div id="chg-us10y" class="text-xs font-mono-num mt-1 font-semibold">--</div>
           </div>
-          <!-- 國際油價 / 費半 -->
+          <!-- 4. 國際油價 (WTI 原油) -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
-            <div class="text-slate-400 text-xs">台積電 ADR (TSM) / 費半連動</div>
-            <div id="val-tsm" class="text-2xl font-bold font-mono-num mt-1">--</div>
-            <div id="chg-tsm" class="text-xs font-mono-num mt-1 font-semibold">--</div>
+            <div class="text-slate-400 text-xs">國際原油價格 (WTI Crude)</div>
+            <div id="val-oil" class="text-2xl font-bold font-mono-num mt-1">--</div>
+            <div id="chg-oil" class="text-xs font-mono-num mt-1 font-semibold">--</div>
           </div>
         </div>
       </div>
 
-      <!-- Section 2：核心視覺與跨市場熱力圖 -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- 美股熱力圖 Widget (佔 2 欄) -->
-        <div class="lg:col-span-2 bg-tradeCard border border-tradeBorder rounded-xl p-4 flex flex-col h-[500px]">
-          <div class="text-sm font-bold text-slate-300 mb-3 flex items-center justify-between">
-            <span>🌐 昨夜美股 S&P 500 板塊板塊熱力圖</span>
-            <span class="text-xs text-slate-500">TradingView Embed</span>
-          </div>
-          <div class="flex-1 rounded-lg overflow-hidden border border-tradeBorder">
-            <iframe 
-              src="https://s.tradingview.com/embed-widget/stock-heatmap/?colorTheme=dark&dataMode=market_cap&hasTopBar=false&isDataSetEnabled=false&locale=zh_TW&market=america" 
-              width="100%" 
-              height="100%" 
-              style="border: 0;" 
-              loading="lazy">
-            </iframe>
-          </div>
+      <!-- Section 2 & Section 3：跨市場熱力圖 與 衍生品籌碼 -->
+      <div>
+        <div class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
+          <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 2 & 3: 跨市場熱力圖與期權籌碼
         </div>
-
-        <!-- Section 3：外資期權籌碼與結算倒數 (佔 1 欄) -->
-        <div class="space-y-4">
-          <!-- 結算提醒卡片 -->
-          <div class="bg-gradient-to-br from-tradeCard to-slate-900 border border-tradeBorder rounded-xl p-5">
-            <div class="flex items-center justify-between">
-              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">🎯 衍生品結算日程</span>
-              <span id="settle-badge" class="px-2 py-0.5 rounded text-xs bg-amber-400/10 text-amber-400 font-mono-num font-bold">倒數 -- 天</span>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- 美股熱力圖 Widget -->
+          <div class="lg:col-span-2 bg-tradeCard border border-tradeBorder rounded-xl p-4 flex flex-col min-h-[480px]">
+            <div class="text-sm font-bold text-slate-300 mb-3 flex items-center justify-between">
+              <span>🌐 昨夜美股 S&P 500 板塊熱力圖</span>
+              <span class="text-xs text-slate-500 font-mono-num">TradingView</span>
             </div>
-            <div id="settle-type" class="text-lg font-bold text-white mt-2">台指期【月結算】</div>
-            <div class="text-xs text-slate-400 mt-1">結算日期：<span id="settle-date" class="font-mono-num text-slate-200">--</span></div>
+            <div class="flex-1 w-full h-[400px] rounded-lg overflow-hidden border border-tradeBorder bg-slate-900">
+              <iframe 
+                src="https://s.tradingview.com/embed-widget/stock-heatmap/?colorTheme=dark&dataMode=market_cap&hasTopBar=false&isDataSetEnabled=false&locale=zh_TW&market=america" 
+                width="100%" 
+                height="100%" 
+                style="border: 0; min-height: 400px;" 
+                loading="lazy">
+              </iframe>
+            </div>
           </div>
 
-          <!-- 外資未平倉 & 選擇權 -->
-          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5 space-y-4">
-            <div class="text-xs font-bold uppercase tracking-wider text-slate-400">📊 期權籌碼觀測</div>
-            <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
-              <span class="text-xs text-slate-400">外資台指期未平倉</span>
-              <div class="text-right font-mono-num">
-                <div id="val-foreign-oi" class="font-bold text-slate-200">-- 口</div>
-                <div id="val-foreign-diff" class="text-xs font-semibold">--</div>
+          <!-- 外資期權籌碼與結算倒數 -->
+          <div class="space-y-4 flex flex-col">
+            <!-- 結算提醒卡片 -->
+            <div class="bg-gradient-to-br from-tradeCard to-slate-900 border border-tradeBorder rounded-xl p-5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">🎯 衍生品結算日程</span>
+                <span id="settle-badge" class="px-2 py-0.5 rounded text-xs bg-amber-400/10 text-amber-400 font-mono-num font-bold">倒數 -- 天</span>
               </div>
+              <div id="settle-type" class="text-lg font-bold text-white mt-2">台指期【結算日程】</div>
+              <div class="text-xs text-slate-400 mt-1">結算日期：<span id="settle-date" class="font-mono-num text-slate-200">--</span></div>
             </div>
-            <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
-              <span class="text-xs text-slate-400">選擇權 Put/Call Ratio</span>
-              <div id="val-pcr" class="font-bold font-mono-num text-slate-200">--%</div>
-            </div>
-            <div class="flex justify-between items-center">
-              <span class="text-xs text-slate-400">台指夜盤收盤</span>
-              <div class="text-right font-mono-num">
-                <div id="val-night-close" class="font-bold text-slate-200">--</div>
-                <div id="val-night-chg" class="text-xs font-semibold">--</div>
+
+            <!-- 外資未平倉 & 選擇權 -->
+            <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5 space-y-4 flex-1">
+              <div class="text-xs font-bold uppercase tracking-wider text-slate-400">📊 期權籌碼觀測</div>
+              <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
+                <span class="text-xs text-slate-400">外資台指期留倉</span>
+                <div class="text-right font-mono-num">
+                  <div id="val-foreign-oi" class="font-bold text-slate-200">-- 口</div>
+                  <div id="val-foreign-diff" class="text-xs font-semibold">--</div>
+                </div>
+              </div>
+              <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
+                <span class="text-xs text-slate-400">選擇權 Put/Call Ratio</span>
+                <div id="val-pcr" class="font-bold font-mono-num text-slate-200">--%</div>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-xs text-slate-400">台指夜盤收盤</span>
+                <div class="text-right font-mono-num">
+                  <div id="val-night-close" class="font-bold text-slate-200">--</div>
+                  <div id="val-night-chg" class="text-xs font-semibold">--</div>
+                </div>
               </div>
             </div>
           </div>
@@ -166,24 +171,29 @@
       </div>
 
       <!-- Section 4：重大財經日程與焦點題材 -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- 今日財經大事 -->
-        <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
-          <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
-            <span class="mr-2">📅</span> 本週重要財經日程與數據
-          </div>
-          <div id="list-macro-events" class="space-y-2.5">
-            <!-- 動態注入 -->
-          </div>
+      <div>
+        <div class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
+          <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 4: 重大日程與焦點題材
         </div>
-
-        <!-- 焦點族群連動 -->
-        <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
-          <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
-            <span class="mr-2">🔥</span> 盤前概念題材與強勢族群連動
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- 今日財經大事 -->
+          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
+            <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
+              <span class="mr-2">📅</span> 本週重要財經日程與數據
+            </div>
+            <div id="list-macro-events" class="space-y-2.5">
+              <!-- 動態注入 -->
+            </div>
           </div>
-          <div id="list-focus-sectors" class="space-y-2.5">
-            <!-- 動態注入 -->
+
+          <!-- 焦點族群連動 (動態) -->
+          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
+            <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
+              <span class="mr-2">🔥</span> 盤前概念題材與強勢族群連動
+            </div>
+            <div id="list-focus-sectors" class="space-y-2.5">
+              <!-- 動態注入 -->
+            </div>
           </div>
         </div>
       </div>
@@ -215,7 +225,6 @@
   </main>
 
   <script>
-    // 切換盤前 / 盤後分頁
     function switchView(mode) {
       const preView = document.getElementById('view-premarket');
       const postView = document.getElementById('view-postmarket');
@@ -235,23 +244,21 @@
       }
     }
 
-    // 格式化漲跌顏色
     function formatChg(el, text, isUp) {
+      if (!el) return;
       el.innerText = text;
       el.className = isUp ? 'text-xs font-mono-num font-semibold text-stockRed' : 'text-xs font-mono-num font-semibold text-stockGreen';
     }
 
-    // 載入盤前資料
     async function loadPremarketData() {
       try {
-        const res = await fetch(`premarket_data.json?v=${new Date().getTime()}`);
+        const res = await fetch(`premarket_data.json?t=${Date.now()}`);
         if (!res.ok) return;
         const d = await res.json();
 
-        document.getElementById('update-time').innerText = d.updated_at || '--';
-        document.getElementById('pre-ai-brief').innerText = d.ai_brief || '';
+        if (d.updated_at) document.getElementById('update-time').innerText = d.updated_at;
+        if (d.ai_brief) document.getElementById('pre-ai-brief').innerText = d.ai_brief;
 
-        // 宏觀指標
         const m = d.macro || {};
         if (m.DXY) {
           document.getElementById('val-dxy').innerText = m.DXY.price;
@@ -265,19 +272,17 @@
           document.getElementById('val-us10y').innerText = `${m.US10Y.price}%`;
           formatChg(document.getElementById('chg-us10y'), `${m.US10Y.change} (${m.US10Y.change_pct})`, m.US10Y.is_up);
         }
-        if (m.TSM_ADR) {
-          document.getElementById('val-tsm').innerText = `$${m.TSM_ADR.price}`;
-          formatChg(document.getElementById('chg-tsm'), `${m.TSM_ADR.change} (${m.TSM_ADR.change_pct})`, m.TSM_ADR.is_up);
+        if (m.OIL) {
+          document.getElementById('val-oil').innerText = `$${m.OIL.price}`;
+          formatChg(document.getElementById('chg-oil'), `${m.OIL.change} (${m.OIL.change_pct})`, m.OIL.is_up);
         }
 
-        // 結算日
         if (d.settle) {
           document.getElementById('settle-badge').innerText = d.settle.countdown;
           document.getElementById('settle-type').innerText = d.settle.settle_type;
           document.getElementById('settle-date').innerText = d.settle.settle_date;
         }
 
-        // 籌碼
         if (d.chips) {
           document.getElementById('val-foreign-oi').innerText = `${d.chips.foreign_oi} 口`;
           formatChg(document.getElementById('val-foreign-diff'), d.chips.foreign_oi_diff, d.chips.is_oi_up);
@@ -286,39 +291,40 @@
           formatChg(document.getElementById('val-night-chg'), d.chips.night_change, d.chips.is_night_up);
         }
 
-        // 行程日程列表
         const evtContainer = document.getElementById('list-macro-events');
-        evtContainer.innerHTML = (d.macro_events || []).map(e => `
-          <div class="flex items-center justify-between p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs">
-            <div>
-              <span class="text-accentBlue font-mono-num font-bold mr-2">${e.time}</span>
-              <span class="text-slate-200">${e.event}</span>
+        if (evtContainer && d.macro_events) {
+          evtContainer.innerHTML = d.macro_events.map(e => `
+            <div class="flex items-center justify-between p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs">
+              <div>
+                <span class="text-accentBlue font-mono-num font-bold mr-2">${e.time}</span>
+                <span class="text-slate-200">${e.event}</span>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${e.impact && (e.impact.includes('Critical') || e.impact.includes('高')) ? 'bg-red-500/20 text-red-400' : 'bg-slate-700 text-slate-300'}">${e.impact}</span>
             </div>
-            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${e.impact.includes('Critical') || e.impact.includes('高') ? 'bg-red-500/20 text-red-400' : 'bg-slate-700 text-slate-300'}">${e.impact}</span>
-          </div>
-        `).join('');
+          `).join('');
+        }
 
-        // 焦點族群列表
         const secContainer = document.getElementById('list-focus-sectors');
-        secContainer.innerHTML = (d.focus_sectors || []).map(s => `
-          <div class="p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs space-y-1">
-            <div class="flex items-center justify-between">
-              <span class="font-bold text-slate-200">${s.sector}</span>
-              <span class="px-1.5 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-400">${s.tag}</span>
+        if (secContainer && d.focus_sectors) {
+          secContainer.innerHTML = d.focus_sectors.map(s => `
+            <div class="p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-slate-200">${s.sector}</span>
+                <span class="px-1.5 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-400">${s.tag}</span>
+              </div>
+              <div class="text-slate-400 text-[11px]">${s.catalyst}</div>
             </div>
-            <div class="text-slate-400 text-[11px]">${s.catalyst}</div>
-          </div>
-        `).join('');
+          `).join('');
+        }
 
       } catch (e) {
         console.error("載入盤前資料失敗:", e);
       }
     }
 
-    // 載入盤後資料
     async function loadPostmarketData() {
       try {
-        const res = await fetch(`market_data.json?v=${new Date().getTime()}`);
+        const res = await fetch(`market_data.json?t=${Date.now()}`);
         if (!res.ok) return;
         const d = await res.json();
 
