@@ -2,15 +2,15 @@
   "updated_at": "2026/09/11 08:00:00",
   "macro": {
     "DXY": {
-      "price": "99.07",
-      "change": "-0.02",
-      "change_pct": "-0.02%",
+      "price": "99.05",
+      "change": "-0.04",
+      "change_pct": "-0.04%",
       "is_up": false
     },
     "USD_TWD": {
-      "price": "31.61",
-      "change": "+0.15",
-      "change_pct": "+0.48%",
+      "price": "31.57",
+      "change": "+0.11",
+      "change_pct": "+0.35%",
       "is_up": true
     },
     "USD_CNH": {
@@ -20,34 +20,34 @@
       "is_up": true
     },
     "USD_KRW": {
-      "price": "1,339.72",
-      "change": "+0.55",
-      "change_pct": "+0.04%",
-      "is_up": true
+      "price": "1,338.58",
+      "change": "-0.59",
+      "change_pct": "-0.04%",
+      "is_up": false
     },
     "US10Y": {
-      "price": "4.92",
+      "price": "4.93",
       "change": "-0.02",
-      "change_pct": "-0.40%",
+      "change_pct": "-0.36%",
       "is_up": false
     },
     "OIL": {
-      "price": "99.09",
-      "change": "-3.39",
-      "change_pct": "-3.31%",
+      "price": "99.28",
+      "change": "-3.20",
+      "change_pct": "-3.12%",
       "is_up": false
     },
     "TSM_ADR": {
-      "price": "428.03",
-      "change": "-7.33",
-      "change_pct": "-1.68%",
-      "is_up": false
+      "price": "431.60",
+      "change": "+3.57",
+      "change_pct": "+0.83%",
+      "is_up": true
     },
     "SOX": {
-      "price": "11,614.17",
-      "change": "-317.15",
-      "change_pct": "-2.66%",
-      "is_up": false
+      "price": "11,761.83",
+      "change": "+147.66",
+      "change_pct": "+1.27%",
+      "is_up": true
     }
   },
   "chips": {
@@ -68,17 +68,17 @@
   "focus_sectors": [
     {
       "sector": "半導體設備 / 先進封裝 (CoWoS)",
-      "catalyst": "台積電 ADR 表現強勢，AI 伺服器供應鏈受資金青睞",
+      "catalyst": "台積電 ADR 與費半連動，留意開盤量能與供應鏈承接力道",
       "tag": "半導體"
     },
     {
       "sector": "光通訊 / CPO 矽光子",
-      "catalyst": "美股網通大廠算力傳輸需求提升，資金輪動進駐",
+      "catalyst": "AI 算力傳輸規格升級，市場資金關注輪動題材",
       "tag": "網通題材"
     },
     {
       "sector": "重電與綠能電力",
-      "catalyst": "電網韌性計畫及夏日用電題材維持基本面支撐",
+      "catalyst": "電網韌性計畫及基礎建設需求提供基本面支撐",
       "tag": "政策概念"
     }
   ],
@@ -95,9 +95,9 @@
     },
     {
       "time": "本週",
-      "event": "美股重量級科技股季報發布期",
+      "event": "美股重量級科技股季報與通膨數據發布期",
       "impact": "中 (Medium)"
     }
   ],
-  "ai_brief": "昨夜美股費半與科技股維持多方輪動，美元指數維持平穩。台指夜盤小幅開高，預期今日大盤早盤偏向多方測試開盤區間，留意半導體權值股與高價 IC 設計族群開盤量能配合度。"
+  "ai_brief": "昨夜美股費城半導體變動 +1.27%，台積電 ADR 變動 +0.83%，美元指數報 99.05。台股早盤預期受美股連動與國際總經數據影響，開盤需觀察權值股開盤量價反應與資金延續性，建議保持部位控管。"
 }
