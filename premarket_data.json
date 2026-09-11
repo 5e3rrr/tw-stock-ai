@@ -2,15 +2,15 @@
   "updated_at": "2026/09/11 08:00:00",
   "macro": {
     "DXY": {
-      "price": "99.05",
-      "change": "-0.04",
-      "change_pct": "-0.04%",
+      "price": "99.01",
+      "change": "-0.08",
+      "change_pct": "-0.08%",
       "is_up": false
     },
     "USD_TWD": {
-      "price": "31.57",
-      "change": "+0.11",
-      "change_pct": "+0.35%",
+      "price": "31.59",
+      "change": "+0.12",
+      "change_pct": "+0.39%",
       "is_up": true
     },
     "USD_CNH": {
@@ -20,8 +20,8 @@
       "is_up": true
     },
     "USD_KRW": {
-      "price": "1,338.58",
-      "change": "-0.59",
+      "price": "1,338.61",
+      "change": "-0.56",
       "change_pct": "-0.04%",
       "is_up": false
     },
@@ -32,21 +32,39 @@
       "is_up": false
     },
     "OIL": {
-      "price": "99.28",
-      "change": "-3.20",
-      "change_pct": "-3.12%",
+      "price": "98.86",
+      "change": "-3.62",
+      "change_pct": "-3.53%",
       "is_up": false
     },
-    "TSM_ADR": {
-      "price": "431.60",
-      "change": "+3.57",
-      "change_pct": "+0.83%",
+    "DJI": {
+      "price": "52,623.83",
+      "change": "+559.73",
+      "change_pct": "+1.08%",
+      "is_up": true
+    },
+    "IXIC": {
+      "price": "26,355.40",
+      "change": "+273.68",
+      "change_pct": "+1.05%",
+      "is_up": true
+    },
+    "GSPC": {
+      "price": "7,665.15",
+      "change": "+73.45",
+      "change_pct": "+0.97%",
       "is_up": true
     },
     "SOX": {
-      "price": "11,761.83",
-      "change": "+147.66",
-      "change_pct": "+1.27%",
+      "price": "11,776.14",
+      "change": "+161.97",
+      "change_pct": "+1.39%",
+      "is_up": true
+    },
+    "TSM_ADR": {
+      "price": "430.01",
+      "change": "+1.98",
+      "change_pct": "+0.46%",
       "is_up": true
     }
   },
@@ -68,36 +86,36 @@
   "focus_sectors": [
     {
       "sector": "半導體設備 / 先進封裝 (CoWoS)",
-      "catalyst": "台積電 ADR 與費半連動，留意開盤量能與供應鏈承接力道",
+      "catalyst": "費半與台積電 ADR 連動，留意開盤量能與供應鏈承接意願",
       "tag": "半導體"
     },
     {
-      "sector": "光通訊 / CPO 矽光子",
-      "catalyst": "AI 算力傳輸規格升級，市場資金關注輪動題材",
-      "tag": "網通題材"
+      "sector": "AI 伺服器與散熱模組",
+      "catalyst": "觀察大型權值股早盤防守力道及資金輪動動向",
+      "tag": "AI 供應鏈"
     },
     {
-      "sector": "重電與綠能電力",
-      "catalyst": "電網韌性計畫及基礎建設需求提供基本面支撐",
-      "tag": "政策概念"
+      "sector": "高殖利率與防禦型傳產",
+      "catalyst": "美股波動加劇時，防禦性資金預期轉向高息利基題材",
+      "tag": "防禦資產"
     }
   ],
   "macro_events": [
     {
       "time": "20:30 (今晚)",
-      "event": "美國當週初領失業金人數 (Initial Jobless Claims)",
+      "event": "美國核心通膨與勞動市場數據",
       "impact": "高 (High)"
     },
     {
-      "time": "明天 20:30",
-      "event": "美國核心 CPI 年增率 / 通膨數據",
-      "impact": "極高 (Critical)"
+      "time": "明日 20:30",
+      "event": "美國密西根大學消費者信心指數",
+      "impact": "中 (Medium)"
     },
     {
       "time": "本週",
-      "event": "美股重量級科技股季報與通膨數據發布期",
-      "impact": "中 (Medium)"
+      "event": "美股重量級科技財報與聯準會官員談話",
+      "impact": "極高 (Critical)"
     }
   ],
-  "ai_brief": "昨夜美股費城半導體變動 +1.27%，台積電 ADR 變動 +0.83%，美元指數報 99.05。台股早盤預期受美股連動與國際總經數據影響，開盤需觀察權值股開盤量價反應與資金延續性，建議保持部位控管。"
+  "ai_brief": "昨夜美股四大指數表現：道瓊 (+1.08%)、那斯達克 (+1.05%)、費城半導體 (+1.39%)。國際油價報 98.86 美元。台股早盤預期受美股連動影響，開盤需觀察權值股承接力道與量能表現。"
 }
