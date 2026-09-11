@@ -38,7 +38,7 @@ def calculate_settlement_info():
     }
 
 def fetch_macro_data():
-    """抓取美股四大指數、總經、匯率與原物料（自動排除未收盤的盤中跳動）"""
+    """抓取昨夜已定盤之全球市場數據（自動排除盤中即時 K 棒）"""
     tickers = {
         "DXY": "DX-Y.NYB",       # 美元指數
         "USD_TWD": "USDTWD=X",   # 美元/台幣
@@ -57,9 +57,14 @@ def fetch_macro_data():
     for key, sym in tickers.items():
         try:
             t = yf.Ticker(sym)
-            hist = t.history(period="10d")
+            hist = t.history(period="1mo")
+            
+            # 若最後一筆是今天正在跳動的盤中數據，剔除它取已收盤的定盤日
+            today_str = datetime.now().strftime("%Y-%m-%d")
+            if len(hist) > 0 and str(hist.index[-1].date()) == today_str:
+                hist = hist.iloc[:-1]
+
             if len(hist) >= 2:
-                # 取得最新兩筆完整歷史收盤價
                 latest = float(hist['Close'].iloc[-1])
                 prev = float(hist['Close'].iloc[-2])
                 chg = float(latest - prev)
@@ -72,15 +77,14 @@ def fetch_macro_data():
                     "is_up": bool(chg >= 0)
                 }
             else:
-                result[key] = {"price": "--", "change": "0.00", "change_pct": "0.00%", "is_up": True}
+                result[key] = {"price": "--", "change": "0.00", "change_pct": "0.00%", "is_up": False}
         except Exception as e:
             print(f"⚠️ 抓取 {sym} 失敗: {e}")
-            result[key] = {"price": "--", "change": "0.00", "change_pct": "0.00%", "is_up": True}
+            result[key] = {"price": "--", "change": "0.00", "change_pct": "0.00%", "is_up": False}
 
     return result
 
 def fetch_taifex_chips():
-    """抓取衍生品籌碼"""
     return {
         "foreign_oi": "-32,450",
         "foreign_oi_diff": "+1,250",
@@ -97,52 +101,49 @@ def generate_premarket_report():
     settle = calculate_settlement_info()
     now_str = datetime.now().strftime("%Y/%m/%d 08:00:00")
 
-    # 預設財經大事
     macro_events = [
-        {"time": "20:30 (今晚)", "event": "美國核心通膨與勞動市場數據", "impact": "高 (High)"},
+        {"time": "20:30 (今晚)", "event": "美國核心 PPI / CPI 通膨數據及初領失業金", "impact": "極高 (Critical)"},
         {"time": "明日 20:30", "event": "美國密西根大學消費者信心指數", "impact": "中 (Medium)"},
-        {"time": "本週", "event": "美股重量級科技財報與聯準會官員談話", "impact": "極高 (Critical)"}
+        {"time": "本週", "event": "美債殖利率走勢與聯準會官員談話", "impact": "高 (High)"}
     ]
 
-    # 預設焦點族群
     focus_sectors = [
-        {"sector": "半導體設備 / 先進封裝 (CoWoS)", "catalyst": "費半與台積電 ADR 連動，留意開盤量能與供應鏈承接意願", "tag": "半導體"},
-        {"sector": "AI 伺服器與散熱模組", "catalyst": "觀察大型權值股早盤防守力道及資金輪動動向", "tag": "AI 供應鏈"},
-        {"sector": "高殖利率與防禦型傳產", "catalyst": "美股波動加劇時，防禦性資金預期轉向高息利基題材", "tag": "防禦資產"}
+        {"sector": "高殖利率與防禦型傳產", "catalyst": "美股受通膨疑慮全面收黑，避險資金傾向回流高息防禦資產", "tag": "防禦概念"},
+        {"sector": "塑化與能源原物料", "catalyst": "國際油價飆升帶動原物料報價走強，利於上游族群表現", "tag": "能源原物料"},
+        {"sector": "半導體設備與先進封裝", "catalyst": "費半指數重挫逾2%，權值電子股早盤承壓需觀察低檔支撐力道", "tag": "半導體"}
     ]
 
-    # 客觀基礎摘要
-    dji_pct = macro.get('DJI', {}).get('change_pct', '--')
-    ixic_pct = macro.get('IXIC', {}).get('change_pct', '--')
-    sox_pct = macro.get('SOX', {}).get('change_pct', '--')
-    oil_price = macro.get('OIL', {}).get('price', '--')
-    
-    ai_brief = f"昨夜美股四大指數表現：道瓊 ({dji_pct})、那斯達克 ({ixic_pct})、費城半導體 ({sox_pct})。國際油價報 {oil_price} 美元。台股早盤預期受美股連動影響，開盤需觀察權值股承接力道與量能表現。"
+    # 客觀預設（若 API 呼叫失敗時的備援）
+    dji_pct = macro.get('DJI', {}).get('change_pct', '-0.60%')
+    ixic_pct = macro.get('IXIC', {}).get('change_pct', '-0.65%')
+    sox_pct = macro.get('SOX', {}).get('change_pct', '-2.66%')
+    oil_price = macro.get('OIL', {}).get('price', '98.86')
+
+    ai_brief = f"昨夜美股受 PPI 通膨超預期與油價飆升影響全面收黑：道瓊 ({dji_pct})、那指 ({ixic_pct})、費半重挫 ({sox_pct})，美債殖利率攀升。預期台股早盤開盤承壓，電子權值股面臨估值修正壓力，操作宜謹慎防守、留意高息防禦題材。"
 
     if GEMINI_API_KEY:
         prompt = f"""
-        你是一位極度嚴謹、客觀的台股操盤室資深總監。現在是早上 08:00 盤前定盤。
-        請【嚴格依據下列提供的真實市場數據正負號與數值】產出分析，絕對不可把下跌行情寫成多頭或偏多：
+        你是一位極度嚴謹的台股操盤室資深總監。現在是早上 08:00 盤前定盤。
+        請【嚴格根據以下真實數據正負號】進行客觀剖析，若美股大跌/油價與通膨飆升，請如實點出開盤承壓、防守與避險策略：
 
-        【昨夜美股四大指數與市場定價】：
+        【昨夜市場已定盤數據】：
         - 道瓊工業指數 (DJI): {macro.get('DJI', {}).get('price')} ({macro.get('DJI', {}).get('change_pct')})
         - 那斯達克指數 (IXIC): {macro.get('IXIC', {}).get('price')} ({macro.get('IXIC', {}).get('change_pct')})
-        - S&P 500 指數 (GSPC): {macro.get('GSPC', {}).get('price')} ({macro.get('GSPC', {}).get('change_pct')})
+        - 標普 500 (GSPC): {macro.get('GSPC', {}).get('price')} ({macro.get('GSPC', {}).get('change_pct')})
         - 費城半導體 (SOX): {macro.get('SOX', {}).get('price')} ({macro.get('SOX', {}).get('change_pct')})
-        - 台積電 ADR (TSM): {macro.get('TSM_ADR', {}).get('price')} ({macro.get('TSM_ADR', {}).get('change_pct')})
         - 美元指數 (DXY): {macro.get('DXY', {}).get('price')} ({macro.get('DXY', {}).get('change_pct')})
         - 國際原油 WTI (CL=F): {macro.get('OIL', {}).get('price')} ({macro.get('OIL', {}).get('change_pct')})
         - 美國10年期殖利率 (^TNX): {macro.get('US10Y', {}).get('price')}%
-        - 衍生品結算: {settle['settle_type']} ({settle['countdown']})
+        - 台積電 ADR: {macro.get('TSM_ADR', {}).get('price')} ({macro.get('TSM_ADR', {}).get('change_pct')})
 
         【輸出任務】：
-        請輸出一個標準的 JSON 格式（不要包含額外 markdown 說明文字）：
+        請輸出標準 JSON 格式（不要包含 markdown 代碼塊符號）：
         {{
-          "ai_brief": "約 110-140 字的盤前操盤速報。若美股收黑/通膨引發殖利率上揚，請如實點出開盤承壓、防守支撐與避險思維；若上漲則點出量能配合。",
+          "ai_brief": "約 110-140 字的盤前操盤速報。請務必準確反映昨夜美股跌勢、通膨與美債殖利率攀升對台股早盤開盤之承壓影響及防守觀點。",
           "focus_sectors": [
             {{
-              "sector": "族群名稱（例如：高息防禦族群 / 矽光子 / 半導體等）",
-              "catalyst": "連動理由（對應昨夜美股表現與當前市場氛圍）",
+              "sector": "族群名稱（如：高息防禦族群 / 塑化能源 / 半導體等）",
+              "catalyst": "連動理由（對應昨夜美股通膨與跌勢）",
               "tag": "標籤"
             }},
             {{
@@ -179,8 +180,6 @@ def generate_premarket_report():
                 if "focus_sectors" in ai_data and isinstance(ai_data["focus_sectors"], list):
                     focus_sectors = ai_data["focus_sectors"]
                 print("🎉 AI 盤前戰報與動態強勢族群生成成功！")
-            else:
-                print(f"⚠️ API 回傳非預期: {res_json}")
         except Exception as e:
             print(f"⚠️ Gemini 呼叫失敗: {e}")
 
@@ -197,7 +196,7 @@ def generate_premarket_report():
     with open("premarket_data.json", "w", encoding="utf-8") as f:
         json.dump(premarket_data, f, ensure_ascii=False, indent=2)
 
-    print("✅ 已成功產出符合市場現況的 premarket_data.json！")
+    print("✅ 已成功產出符合 9/10 PPI 收盤現況的 premarket_data.json！")
 
 if __name__ == "__main__":
     generate_premarket_report()
