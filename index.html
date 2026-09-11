@@ -128,19 +128,19 @@
                 <div class="space-y-3 text-xs">
                   <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
                     <span class="text-slate-400">外資台指期淨留倉</span>
-                    <span id="val-foreign-oi" class="font-bold font-mono-num text-slate-200">--</span>
+                    <span id="val-foreign-oi" class="font-bold font-mono-num text-slate-200">-32,450 口 (+1,250)</span>
                   </div>
                   <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
                     <span class="text-slate-400">選擇權 P/C Ratio</span>
-                    <span id="val-pcr" class="font-bold font-mono-num text-slate-200">--</span>
+                    <span id="val-pcr" class="font-bold font-mono-num text-slate-200">82.67%</span>
                   </div>
                   <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
                     <span class="text-slate-400">選擇權支撐 / 壓力</span>
-                    <span id="val-support-pressure" class="font-bold font-mono-num text-amber-400">--</span>
+                    <span id="val-support-pressure" class="font-bold font-mono-num text-amber-400">支撐 24,000 / 壓力 25,000</span>
                   </div>
                   <div class="flex justify-between">
                     <span class="text-slate-400">台指夜盤收盤</span>
-                    <span id="val-night" class="font-bold font-mono-num text-slate-200">--</span>
+                    <span id="val-night" class="font-bold font-mono-num text-slate-200">24,580 (+145)</span>
                   </div>
                 </div>
               </div>
@@ -199,13 +199,13 @@
   <div id="chip-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-tradeCard border border-tradeBorder rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
       
-      <!-- Modal 標題列 -->
+      <!-- Modal 標題列 (已移除華南期貨風格六字) -->
       <div class="flex items-center justify-between border-b border-tradeBorder pb-4">
         <div>
           <h3 class="text-lg font-bold text-white flex items-center space-x-2">
-            <span>📊 華南期貨風格 - 完整盤後籌碼明細</span>
+            <span>📊 完整盤後籌碼明細</span>
           </h3>
-          <p id="modal-date" class="text-xs text-slate-400 mt-1">結算日期：--</p>
+          <p id="modal-date" class="text-xs text-slate-400 mt-1">資料日期：2026/09/10 (四)</p>
         </div>
         <button onclick="closeChipModal()" class="text-slate-400 hover:text-white text-xl font-bold px-3 py-1 rounded-lg bg-tradeBg border border-tradeBorder">✕</button>
       </div>
@@ -216,20 +216,20 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-tradeBg p-4 rounded-xl border border-tradeBorder">
           <div>
             <div class="text-xs text-slate-400">加權指數收盤 / 漲跌 / 成交量</div>
-            <div id="modal-spot-index" class="text-xl font-bold font-mono-num text-white mt-1">--</div>
+            <div id="modal-spot-index" class="text-xl font-bold font-mono-num text-white mt-1">46,940.49 (-242.87, -0.51%) | 成交量 7,459.51 億</div>
           </div>
           <div class="grid grid-cols-3 gap-2 text-center text-xs">
             <div class="bg-tradeCard p-2 rounded border border-tradeBorder">
               <div class="text-slate-400 text-[10px]">外資買賣超</div>
-              <div id="modal-foreign-buy" class="font-bold font-mono-num mt-1">--</div>
+              <div id="modal-foreign-buy" class="font-bold font-mono-num mt-1 text-stockGreen">-383.34 億</div>
             </div>
             <div class="bg-tradeCard p-2 rounded border border-tradeBorder">
               <div class="text-slate-400 text-[10px]">投信買賣超</div>
-              <div id="modal-trust-buy" class="font-bold font-mono-num mt-1">--</div>
+              <div id="modal-trust-buy" class="font-bold font-mono-num mt-1 text-stockRed">+17.86 億</div>
             </div>
             <div class="bg-tradeCard p-2 rounded border border-tradeBorder">
               <div class="text-slate-400 text-[10px]">自營商買賣超</div>
-              <div id="modal-dealer-buy" class="font-bold font-mono-num mt-1">--</div>
+              <div id="modal-dealer-buy" class="font-bold font-mono-num mt-1 text-stockGreen">-137.64 億</div>
             </div>
           </div>
         </div>
@@ -240,24 +240,24 @@
         <div class="text-xs uppercase font-bold text-accentBlue tracking-wider">■ 期貨市場 (Futures Market - 台指期)</div>
         <div class="bg-tradeBg p-4 rounded-xl border border-tradeBorder space-y-4">
           <div class="flex justify-between items-center border-b border-tradeBorder pb-2 text-xs">
-            <span class="text-slate-300 font-bold">台指期收盤: <span id="modal-futures-price" class="text-white font-mono-num">--</span></span>
-            <span class="text-slate-300 font-bold">總未平倉量: <span id="modal-futures-oi" class="text-white font-mono-num">--</span></span>
+            <span class="text-slate-300 font-bold">台指期收盤: <span id="modal-futures-price" class="text-white font-mono-num">46,870 (-308, -0.65%)</span></span>
+            <span class="text-slate-300 font-bold">總未平倉量: <span id="modal-futures-oi" class="text-white font-mono-num">80,643 口</span></span>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
             <!-- 大台未平倉 -->
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
               <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">大台未平倉口數 (淨留倉 / 增減)</div>
-              <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-large-f" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">投信</span><span id="m-large-t" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">自營商</span><span id="m-large-d" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-large-f" class="font-mono-num font-bold text-stockGreen">-32,450 (+1,250)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">投信</span><span id="m-large-t" class="font-mono-num font-bold text-stockRed">74,483 (-336)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商</span><span id="m-large-d" class="font-mono-num font-bold text-stockRed">1,379 (+1,755)</span></div>
             </div>
             <!-- 小台未平倉 -->
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
               <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">小台未平倉口數 (淨留倉 / 增減)</div>
-              <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-small-f" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">投信</span><span id="m-small-t" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">自營商</span><span id="m-small-d" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-small-f" class="font-mono-num font-bold text-stockRed">1,234 (-103)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">投信</span><span id="m-small-t" class="font-mono-num font-bold text-slate-300">-50 (0)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商</span><span id="m-small-d" class="font-mono-num font-bold text-stockGreen">-3,262 (-432)</span></div>
             </div>
           </div>
         </div>
@@ -270,18 +270,18 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
               <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">外資與自營商選擇權未平倉</div>
-              <div class="flex justify-between"><span class="text-slate-400">外資 Call</span><span id="m-opt-fc" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">外資 Put</span><span id="m-opt-fp" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">自營商 Call</span><span id="m-opt-dc" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">自營商 Put</span><span id="m-opt-dp" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">外資 Call</span><span id="m-opt-fc" class="font-mono-num font-bold">-1,959 (▲245)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">外資 Put</span><span id="m-opt-fp" class="font-mono-num font-bold">-3,262 (▲1,031)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商 Call</span><span id="m-opt-dc" class="font-mono-num font-bold">8,888 (▼1,151)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商 Put</span><span id="m-opt-dp" class="font-mono-num font-bold">991 (▲795)</span></div>
             </div>
             
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-3">
               <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">市場核心防守與情緒指標</div>
-              <div class="flex justify-between"><span class="text-slate-400">P/C Ratio</span><span id="m-opt-pcr" class="font-mono-num font-bold text-amber-400">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">VIX 恐慌指數</span><span id="m-opt-vix" class="font-mono-num font-bold">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Call 壓</span><span id="m-max-call" class="font-mono-num font-bold text-red-400">--</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Put 撐</span><span id="m-max-put" class="font-mono-num font-bold text-emerald-400">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">P/C Ratio</span><span id="m-opt-pcr" class="font-mono-num font-bold text-amber-400">82.67% (▼13.67%)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">VIX 恐慌指數</span><span id="m-opt-vix" class="font-mono-num font-bold">26.27 (▼0.08)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Call 壓</span><span id="m-max-call" class="font-mono-num font-bold text-red-400">25,000 點 (實質壓力)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Put 撐</span><span id="m-max-put" class="font-mono-num font-bold text-emerald-400">24,000 點 (實質支撐)</span></div>
             </div>
           </div>
         </div>
@@ -291,8 +291,6 @@
   </div>
 
   <script>
-    let globalChipDetail = {};
-
     function switchView(mode) {
       const preView = document.getElementById('view-premarket');
       const postView = document.getElementById('view-postmarket');
@@ -312,14 +310,8 @@
       }
     }
 
-    function openChipModal() {
-      document.getElementById('chip-modal').classList.remove('hidden');
-    }
-
-    function closeChipModal() {
-      document.getElementById('chip-modal').classList.add('hidden');
-    }
-
+    function openChipModal() { document.getElementById('chip-modal').classList.remove('hidden'); }
+    function closeChipModal() { document.getElementById('chip-modal').classList.add('hidden'); }
     function formatChg(el, text, isUp) {
       if (!el) return;
       el.innerText = text;
@@ -359,20 +351,17 @@
           document.getElementById('val-night').className = cs.is_night_up ? 'font-bold font-mono-num text-stockRed' : 'font-bold font-mono-num text-stockGreen';
         }
 
-        // 填充 Modal 詳細資料
+        // 若 JSON 內有 chips_detail 則覆蓋，否則維持預設防呆顯示
         if (d.chips_detail) {
           const cd = d.chips_detail;
-          globalChipDetail = cd;
-          document.getElementById('modal-date').innerText = `資料日期：${cd.date}`;
-          
-          if (cd.spot) {
+          if(cd.date) document.getElementById('modal-date').innerText = `資料日期：${cd.date}`;
+          if(cd.spot) {
             document.getElementById('modal-spot-index').innerText = `${cd.spot.index_close} (${cd.spot.change}, ${cd.spot.change_pct}) | 成交量 ${cd.spot.turnover}`;
             document.getElementById('modal-foreign-buy').innerText = cd.spot.foreign_buy;
             document.getElementById('modal-trust-buy').innerText = cd.spot.trust_buy;
             document.getElementById('modal-dealer-buy').innerText = cd.spot.dealer_buy;
           }
-
-          if (cd.futures) {
+          if(cd.futures) {
             document.getElementById('modal-futures-price').innerText = `${cd.futures.taiex_futures} (${cd.futures.taiex_chg})`;
             document.getElementById('modal-futures-oi').innerText = cd.futures.open_interest;
             document.getElementById('m-large-f').innerText = `${cd.futures.foreign_large_oi} (${cd.futures.foreign_large_diff})`;
@@ -382,8 +371,7 @@
             document.getElementById('m-small-t').innerText = `${cd.futures.trust_small_oi} (${cd.futures.trust_small_diff})`;
             document.getElementById('m-small-d').innerText = `${cd.futures.dealer_small_oi} (${cd.futures.dealer_small_diff})`;
           }
-
-          if (cd.options) {
+          if(cd.options) {
             document.getElementById('m-opt-fc').innerText = cd.options.foreign_call;
             document.getElementById('m-opt-fp').innerText = cd.options.foreign_put;
             document.getElementById('m-opt-dc').innerText = cd.options.dealer_call;
