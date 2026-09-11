@@ -121,17 +121,17 @@ def generate_premarket_report():
     focus_sectors = [
         {
             "sector": "半導體設備 / 先進封裝 (CoWoS)",
-            "catalyst": "台積電 ADR 表現強勢，AI 伺服器供應鏈受資金青睞",
+            "catalyst": "台積電 ADR 與費半連動，留意開盤量能與供應鏈承接力道",
             "tag": "半導體",
         },
         {
             "sector": "光通訊 / CPO 矽光子",
-            "catalyst": "美股網通大廠算力傳輸需求提升，資金輪動進駐",
+            "catalyst": "AI 算力傳輸規格升級，市場資金關注輪動題材",
             "tag": "網通題材",
         },
         {
             "sector": "重電與綠能電力",
-            "catalyst": "電網韌性計畫及夏日用電題材維持基本面支撐",
+            "catalyst": "電網韌性計畫及基礎建設需求提供基本面支撐",
             "tag": "政策概念",
         },
     ]
@@ -149,28 +149,36 @@ def generate_premarket_report():
         },
         {
             "time": "本週",
-            "event": "美股重量級科技股季報發布期",
+            "event": "美股重量級科技股季報與通膨數據發布期",
             "impact": "中 (Medium)",
         },
     ]
 
-    ai_brief = "昨夜美股費半與科技股維持多方輪動，美元指數維持平穩。台指夜盤小幅開高，預期今日大盤早盤偏向多方測試開盤區間，留意半導體權值股與高價 IC 設計族群開盤量能配合度。"
+    # 動態客觀備援摘要（依據費半與台積電 ADR 實際漲跌生成）
+    sox_pct = macro.get("SOX", {}).get("change_pct", "0.00%")
+    tsm_pct = macro.get("TSM_ADR", {}).get("change_pct", "0.00%")
+    dxy_val = macro.get("DXY", {}).get("price", "--")
+    
+    ai_brief = f"昨夜美股費城半導體變動 {sox_pct}，台積電 ADR 變動 {tsm_pct}，美元指數報 {dxy_val}。台股早盤預期受美股連動與國際總經數據影響，開盤需觀察權值股開盤量價反應與資金延續性，建議保持部位控管。"
 
     if GEMINI_API_KEY:
         prompt = f"""
-        你是一位頂尖台股盤前分析師。現在是早上 08:00。
-        盤前數據：
-        - 美元指數: {macro.get('DXY', {}).get('price')} ({macro.get('DXY', {}).get('change_pct')})
-        - 美國10年期公債殖利率: {macro.get('US10Y', {}).get('price')}%
-        - 台積電 ADR: {macro.get('TSM_ADR', {}).get('change_pct')}
-        - 外資期貨留倉: {chips['foreign_oi']} 口 (變化 {chips['foreign_oi_diff']})
-        - 結算狀態: {settle['settle_type']} ({settle['countdown']})
+        你是一位客觀、專業的頂尖台股盤前分析師。現在是早上 08:00。
+        請【嚴格根據以下客觀數據的實際漲跌幅度與正負號】進行盤前重點剖析，不要預設立場或一律看多看空：
 
-        請以專業、精準、條理化的繁體中文，產出約 100~140 字的「08:00 盤前操盤要點」：
-        1. 開盤格局與跳空預估
-        2. 資金輪動與族群留意方向
-        3. 風險控管要點（保持中立客觀，不直接給買賣點）
-        請勿使用 Markdown 標題符號。
+        【昨夜國際與宏觀客觀數據】：
+        - 費城半導體指數 (SOX): 漲跌幅 {macro.get('SOX', {}).get('change_pct')}
+        - 台積電 ADR (TSM): 漲跌幅 {macro.get('TSM_ADR', {}).get('change_pct')}
+        - 美元指數 (DXY): {macro.get('DXY', {}).get('price')} (變動 {macro.get('DXY', {}).get('change_pct')})
+        - 美國10年期公債殖利率 (^TNX): {macro.get('US10Y', {}).get('price')}% (變動 {macro.get('US10Y', {}).get('change_pct')})
+        - 國際原油 (WTI): {macro.get('OIL', {}).get('price')} (變動 {macro.get('OIL', {}).get('change_pct')})
+        - 外資台指期留倉: {chips['foreign_oi']} 口 (增減 {chips['foreign_oi_diff']})
+        - 衍生品日程: {settle['settle_type']} ({settle['countdown']})
+
+        【撰寫要求】：
+        1. 若美股或費半下跌/通膨殖利率上揚，請如實點出承壓氛圍與防守區間；若上漲則點出上攻留意點。
+        2. 產出約 100~140 字的「08:00 盤前操盤要點」，包含：昨夜美股對台股開盤之實質連動影響、早盤主流族群觀察、風險控管原則。
+        3. 語氣嚴謹客觀，嚴禁使用 Markdown 標題符號（如 ** 或 #）。
         """
         api_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={GEMINI_API_KEY}"
         try:
@@ -185,6 +193,9 @@ def generate_premarket_report():
                 ai_brief = res_json["candidates"][0]["content"]["parts"][0][
                     "text"
                 ].strip()
+                print("🎉 AI 盤前戰報分析生成成功！")
+            else:
+                print(f"⚠️ API 回傳: {res_json}")
         except Exception as e:
             print(f"⚠️ Gemini 呼叫失敗: {e}")
 
@@ -201,7 +212,7 @@ def generate_premarket_report():
     with open("premarket_data.json", "w", encoding="utf-8") as f:
         json.dump(premarket_data, f, ensure_ascii=False, indent=2)
 
-    print("✅ 已成功產出 premarket_data.json！")
+    print("✅ 已成功產出客觀盤前數據 premarket_data.json！")
 
 
 if __name__ == "__main__":
