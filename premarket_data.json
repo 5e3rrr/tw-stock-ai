@@ -2,15 +2,15 @@
   "updated_at": "2026/09/11 08:00:00",
   "macro": {
     "DXY": {
-      "price": "99.01",
-      "change": "-0.08",
-      "change_pct": "-0.08%",
+      "price": "99.03",
+      "change": "-0.06",
+      "change_pct": "-0.06%",
       "is_up": false
     },
     "USD_TWD": {
-      "price": "31.59",
-      "change": "+0.12",
-      "change_pct": "+0.39%",
+      "price": "31.61",
+      "change": "+0.14",
+      "change_pct": "+0.45%",
       "is_up": true
     },
     "USD_CNH": {
@@ -20,10 +20,10 @@
       "is_up": true
     },
     "USD_KRW": {
-      "price": "1,338.61",
-      "change": "-0.56",
-      "change_pct": "-0.04%",
-      "is_up": false
+      "price": "1,340.11",
+      "change": "+0.94",
+      "change_pct": "+0.07%",
+      "is_up": true
     },
     "US10Y": {
       "price": "4.93",
@@ -32,39 +32,39 @@
       "is_up": false
     },
     "OIL": {
-      "price": "98.86",
-      "change": "-3.62",
-      "change_pct": "-3.53%",
+      "price": "99.66",
+      "change": "-2.82",
+      "change_pct": "-2.75%",
       "is_up": false
     },
     "DJI": {
-      "price": "52,623.83",
-      "change": "+559.73",
-      "change_pct": "+1.08%",
+      "price": "52,474.91",
+      "change": "+410.81",
+      "change_pct": "+0.79%",
       "is_up": true
     },
     "IXIC": {
-      "price": "26,355.40",
-      "change": "+273.68",
-      "change_pct": "+1.05%",
+      "price": "26,353.68",
+      "change": "+271.96",
+      "change_pct": "+1.04%",
       "is_up": true
     },
     "GSPC": {
-      "price": "7,665.15",
-      "change": "+73.45",
-      "change_pct": "+0.97%",
+      "price": "7,659.46",
+      "change": "+67.76",
+      "change_pct": "+0.89%",
       "is_up": true
     },
     "SOX": {
-      "price": "11,776.14",
-      "change": "+161.97",
-      "change_pct": "+1.39%",
+      "price": "11,814.85",
+      "change": "+200.68",
+      "change_pct": "+1.73%",
       "is_up": true
     },
     "TSM_ADR": {
-      "price": "430.01",
-      "change": "+1.98",
-      "change_pct": "+0.46%",
+      "price": "431.18",
+      "change": "+3.15",
+      "change_pct": "+0.74%",
       "is_up": true
     }
   },
@@ -117,5 +117,5 @@
       "impact": "極高 (Critical)"
     }
   ],
-  "ai_brief": "昨夜美股四大指數表現：道瓊 (+1.08%)、那斯達克 (+1.05%)、費城半導體 (+1.39%)。國際油價報 98.86 美元。台股早盤預期受美股連動影響，開盤需觀察權值股承接力道與量能表現。"
+  "ai_brief": "昨夜美股四大指數表現：道瓊 (+0.79%)、那斯達克 (+1.04%)、費城半導體 (+1.73%)。國際油價報 99.66 美元。台股早盤預期受美股連動影響，開盤需觀察權值股承接力道與量能表現。"
 }
