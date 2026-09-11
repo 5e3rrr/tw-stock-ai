@@ -38,7 +38,7 @@ def calculate_settlement_info():
     }
 
 def fetch_macro_data():
-    """抓取美股四大指數、總經、匯率與原物料"""
+    """抓取美股四大指數、總經、匯率與原物料（自動排除未收盤的盤中跳動）"""
     tickers = {
         "DXY": "DX-Y.NYB",       # 美元指數
         "USD_TWD": "USDTWD=X",   # 美元/台幣
@@ -57,8 +57,9 @@ def fetch_macro_data():
     for key, sym in tickers.items():
         try:
             t = yf.Ticker(sym)
-            hist = t.history(period="5d")
+            hist = t.history(period="10d")
             if len(hist) >= 2:
+                # 取得最新兩筆完整歷史收盤價
                 latest = float(hist['Close'].iloc[-1])
                 prev = float(hist['Close'].iloc[-2])
                 chg = float(latest - prev)
