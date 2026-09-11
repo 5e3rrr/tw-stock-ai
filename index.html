@@ -124,7 +124,7 @@
 
             <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5 space-y-4 flex-1 flex flex-col justify-between">
               <div>
-                <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">📊 期權籌碼摘要</div>
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">📊 期權籌碼與技術防守</div>
                 <div class="space-y-3 text-xs">
                   <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
                     <span class="text-slate-400">外資台指期淨留倉</span>
@@ -135,8 +135,8 @@
                     <span id="val-pcr" class="font-bold font-mono-num text-slate-200">82.67%</span>
                   </div>
                   <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
-                    <span class="text-slate-400">選擇權支撐 / 壓力</span>
-                    <span id="val-support-pressure" class="font-bold font-mono-num text-amber-400">支撐 24,000 / 壓力 25,000</span>
+                    <span class="text-slate-400">月線(20MA) / 壓力頸線</span>
+                    <span id="val-support-pressure" class="font-bold font-mono-num text-amber-400">月線 46,500 / 壓力 47,500</span>
                   </div>
                   <div class="flex justify-between">
                     <span class="text-slate-400">台指夜盤收盤</span>
@@ -147,7 +147,7 @@
 
               <!-- 點擊展開詳細籌碼按鈕 -->
               <button onclick="openChipModal()" class="w-full py-2.5 bg-accentBlue hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition-all shadow-lg flex items-center justify-center space-x-2">
-                <span>🔍 點擊查看完整盤後籌碼明細</span>
+                <span>🔍 點擊查看完整盤後籌碼與技術明細</span>
               </button>
             </div>
           </div>
@@ -195,15 +195,15 @@
     </div>
   </main>
 
-  <!-- ==================== 完整盤後籌碼彈窗 (Modal) ==================== -->
+  <!-- ==================== 完整盤後籌碼與技術明細彈窗 (Modal) ==================== -->
   <div id="chip-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-tradeCard border border-tradeBorder rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
       
-      <!-- Modal 標題列 (已移除華南期貨風格六字) -->
+      <!-- Modal 標題列 -->
       <div class="flex items-center justify-between border-b border-tradeBorder pb-4">
         <div>
           <h3 class="text-lg font-bold text-white flex items-center space-x-2">
-            <span>📊 完整盤後籌碼明細</span>
+            <span>📊 完整盤後籌碼與技術明細</span>
           </h3>
           <p id="modal-date" class="text-xs text-slate-400 mt-1">資料日期：2026/09/10 (四)</p>
         </div>
@@ -245,14 +245,12 @@
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
-            <!-- 大台未平倉 -->
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
               <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">大台未平倉口數 (淨留倉 / 增減)</div>
               <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-large-f" class="font-mono-num font-bold text-stockGreen">-32,450 (+1,250)</span></div>
               <div class="flex justify-between"><span class="text-slate-400">投信</span><span id="m-large-t" class="font-mono-num font-bold text-stockRed">74,483 (-336)</span></div>
               <div class="flex justify-between"><span class="text-slate-400">自營商</span><span id="m-large-d" class="font-mono-num font-bold text-stockRed">1,379 (+1,755)</span></div>
             </div>
-            <!-- 小台未平倉 -->
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
               <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">小台未平倉口數 (淨留倉 / 增減)</div>
               <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-small-f" class="font-mono-num font-bold text-stockRed">1,234 (-103)</span></div>
@@ -263,9 +261,9 @@
         </div>
       </div>
 
-      <!-- 3. 選擇權與情緒指標 (含 Max OI) -->
+      <!-- 3. 選擇權與技術均線頸線防守 -->
       <div class="space-y-3">
-        <div class="text-xs uppercase font-bold text-accentBlue tracking-wider">■ 選擇權與情緒指標 (Options & Sentiment)</div>
+        <div class="text-xs uppercase font-bold text-accentBlue tracking-wider">■ 選擇權與技術面均線頸線 (Options & Technicals)</div>
         <div class="bg-tradeBg p-4 rounded-xl border border-tradeBorder space-y-4 text-xs">
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
@@ -277,11 +275,13 @@
             </div>
             
             <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-3">
-              <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">市場核心防守與情緒指標</div>
+              <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">市場核心防守與技術均線</div>
               <div class="flex justify-between"><span class="text-slate-400">P/C Ratio</span><span id="m-opt-pcr" class="font-mono-num font-bold text-amber-400">82.67% (▼13.67%)</span></div>
               <div class="flex justify-between"><span class="text-slate-400">VIX 恐慌指數</span><span id="m-opt-vix" class="font-mono-num font-bold">26.27 (▼0.08)</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Call 壓</span><span id="m-max-call" class="font-mono-num font-bold text-red-400">25,000 點 (實質壓力)</span></div>
-              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Put 撐</span><span id="m-max-put" class="font-mono-num font-bold text-emerald-400">24,000 點 (實質支撐)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">月線 (20MA)</span><span id="m-ma20" class="font-mono-num font-bold text-blue-400">46,500.00 (月線)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">季線 (60MA)</span><span id="m-ma60" class="font-mono-num font-bold text-amber-400">45,200.00 (季線)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">近期支撐頸線</span><span id="m-support-line" class="font-mono-num font-bold text-emerald-400">45,800.00 (近期支撐)</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">近期壓力頸線</span><span id="m-pressure-line" class="font-mono-num font-bold text-red-400">47,500.00 (近期壓力)</span></div>
             </div>
           </div>
         </div>
@@ -345,13 +345,12 @@
           document.getElementById('val-foreign-oi').className = cs.is_oi_up ? 'font-bold font-mono-num text-stockRed' : 'font-bold font-mono-num text-stockGreen';
         }
         if (cs.pc_ratio) document.getElementById('val-pcr').innerText = cs.pc_ratio;
-        if (cs.max_support) document.getElementById('val-support-pressure').innerText = `支撐 ${cs.max_support} / 壓力 ${cs.max_pressure}`;
+        if (cs.max_support) document.getElementById('val-support-pressure').innerText = `月線 ${cs.max_support} / 壓力 ${cs.max_pressure}`;
         if (cs.night_close) {
           document.getElementById('val-night').innerText = `${cs.night_close} (${cs.night_change})`;
           document.getElementById('val-night').className = cs.is_night_up ? 'font-bold font-mono-num text-stockRed' : 'font-bold font-mono-num text-stockGreen';
         }
 
-        // 若 JSON 內有 chips_detail 則覆蓋，否則維持預設防呆顯示
         if (d.chips_detail) {
           const cd = d.chips_detail;
           if(cd.date) document.getElementById('modal-date').innerText = `資料日期：${cd.date}`;
@@ -378,8 +377,10 @@
             document.getElementById('m-opt-dp').innerText = cd.options.dealer_put;
             document.getElementById('m-opt-pcr').innerText = `${cd.options.pc_ratio} (${cd.options.pc_ratio_diff})`;
             document.getElementById('m-opt-vix').innerText = `${cd.options.vix} (${cd.options.vix_diff})`;
-            document.getElementById('m-max-call').innerText = cd.options.max_call_strike;
-            document.getElementById('m-max-put').innerText = cd.options.max_put_strike;
+            if(cd.options.ma20) document.getElementById('m-ma20').innerText = cd.options.ma20;
+            if(cd.options.ma60) document.getElementById('m-ma60').innerText = cd.options.ma60;
+            if(cd.options.support_line) document.getElementById('m-support-line').innerText = cd.options.support_line;
+            if(cd.options.pressure_line) document.getElementById('m-pressure-line').innerText = cd.options.pressure_line;
           }
         }
 
