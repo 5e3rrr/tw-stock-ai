@@ -68,19 +68,69 @@
       "is_up": false
     }
   },
-  "chips": {
-    "foreign_oi": "-32,450",
+  "chips_summary": {
+    "foreign_oi": "-32,450 口",
     "foreign_oi_diff": "+1,250",
     "is_oi_up": true,
-    "pc_ratio": "98.5%",
-    "night_close": "24,580",
-    "night_change": "+145",
+    "pc_ratio": "82.67%",
+    "max_support": "46,006.60 (月線)",
+    "max_pressure": "47,578.24 (近期壓力頸線)",
+    "night_close": "47,085.00",
+    "night_change": "+215.00",
     "is_night_up": true
   },
+  "chips_detail": {
+    "date": "2026/09/10 (四)",
+    "spot": {
+      "index_close": "46,940.49",
+      "change": "-242.87",
+      "change_pct": "-0.51%",
+      "turnover": "7,459.51 億",
+      "foreign_buy": "-383.34 億",
+      "trust_buy": "+17.86 億",
+      "dealer_buy": "-137.64 億"
+    },
+    "futures": {
+      "taiex_futures": "46,870.00",
+      "taiex_chg": "-308 (-0.65%)",
+      "open_interest": "80,643 口",
+      "foreign_large_oi": "-32,450",
+      "foreign_large_diff": "+1,250",
+      "trust_large_oi": "74,483",
+      "trust_large_diff": "-336",
+      "dealer_large_oi": "1,379",
+      "dealer_large_diff": "+1,755",
+      "foreign_small_oi": "1,234",
+      "foreign_small_diff": "-103",
+      "trust_small_oi": "-50",
+      "trust_small_diff": "0",
+      "dealer_small_oi": "-3,262",
+      "dealer_small_diff": "-432"
+    },
+    "options": {
+      "foreign_call": "-1,959 (▲245)",
+      "foreign_put": "-3,262 (▲1,031)",
+      "dealer_call": "8,888 (▼1,151)",
+      "dealer_put": "991 (▲795)",
+      "pc_ratio": "82.67%",
+      "pc_ratio_diff": "▼13.67%",
+      "vix": "26.27",
+      "vix_diff": "▼0.08",
+      "ma20": "46,006.60 (月線)",
+      "ma60": "45,215.70 (季線)",
+      "support_line": "44,210.31 (近期支撐頸線)",
+      "pressure_line": "47,578.24 (近期壓力頸線)"
+    },
+    "night": {
+      "night_close": "47,085.00",
+      "night_change": "+215.00",
+      "is_night_up": true
+    }
+  },
   "settle": {
-    "settle_date": "2026/09/16",
-    "settle_type": "台指期【月結算】",
-    "countdown": "倒數 5 天",
+    "settle_date": "2026/10/21",
+    "settle_type": "台指期【10月月結算】",
+    "countdown": "倒數 40 天",
     "is_today": false
   },
   "focus_sectors": [
@@ -117,5 +167,5 @@
       "impact": "高 (High)"
     }
   ],
-  "ai_brief": "昨夜美股受 PPI 通膨超預期與油價飆升影響全面收黑：道瓊 (-0.60%)、那指 (-0.65%)、費半重挫 (-2.66%)，美債殖利率攀升。預期台股早盤開盤承壓，電子權值股面臨估值修正壓力，操作宜謹慎防守、留意高息防禦題材。"
+  "ai_brief": "昨夜美股受 PPI 通膨超預期與油價飆升影響全面收黑，台指夜盤在 47,085 點附近震盪收高。操作宜緊盯月線(20MA)與季線(60MA)等關鍵技術支撐防守力道。"
 }
