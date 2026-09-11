@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>513股市資訊站 | 盤前盤後全方位監控</title>
-  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -25,17 +24,13 @@
   </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
-    body {
-      font-family: 'Noto Sans TC', sans-serif;
-    }
-    .font-mono-num {
-      font-family: 'JetBrains Mono', monospace;
-    }
+    body { font-family: 'Noto Sans TC', sans-serif; }
+    .font-mono-num { font-family: 'JetBrains Mono', monospace; }
   </style>
 </head>
 <body class="bg-tradeBg text-slate-100 min-h-screen pb-16">
 
-  <!-- 頂部 Navigation & 模式切換 -->
+  <!-- 頂部導航 -->
   <header class="border-b border-tradeBorder bg-tradeCard/90 backdrop-blur sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
       <div class="flex items-center space-x-3">
@@ -43,12 +38,11 @@
         <span class="text-xl font-black tracking-wider text-white">513<span class="text-accentBlue ml-1">股市資訊站</span></span>
       </div>
 
-      <!-- 切換按鈕 -->
       <div class="flex bg-tradeBg p-1 rounded-xl border border-tradeBorder">
-        <button id="btn-premarket" onclick="switchView('premarket')" class="px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200 bg-accentBlue text-white shadow-lg">
+        <button id="btn-premarket" onclick="switchView('premarket')" class="px-5 py-2 rounded-lg font-medium text-sm transition-all bg-accentBlue text-white shadow-lg">
           ☀️ 08:00 盤前監控
         </button>
-        <button id="btn-postmarket" onclick="switchView('postmarket')" class="px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200 text-slate-400 hover:text-white">
+        <button id="btn-postmarket" onclick="switchView('postmarket')" class="px-5 py-2 rounded-lg font-medium text-sm transition-all text-slate-400 hover:text-white">
           🌙 盤後大盤總結
         </button>
       </div>
@@ -59,48 +53,38 @@
     </div>
   </header>
 
-  <!-- 主內容容器 -->
   <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
-
-    <!-- ==================== 模組 A：盤前監控儀表板 (Pre-Market) ==================== -->
     <div id="view-premarket" class="space-y-8 block">
 
-      <!-- AI 盤前速報 -->
+      <!-- 盤前一句話 -->
       <div class="bg-gradient-to-r from-blue-950/40 via-tradeCard to-tradeCard border border-accentBlue/30 rounded-2xl p-5 shadow-xl">
         <div class="flex items-center space-x-2 text-accentBlue font-bold text-sm mb-2">
-          <span>⚡</span>
-          <span>盤前一句話</span>
+          <span>⚡</span><span>盤前一句話</span>
         </div>
-        <p id="pre-ai-brief" class="text-slate-300 text-sm leading-relaxed">
-          盤前數據加載中...
-        </p>
+        <p id="pre-ai-brief" class="text-slate-300 text-sm leading-relaxed">盤前數據加載中...</p>
       </div>
 
-      <!-- Section 1：核心客觀宏觀指標（4 格黃金配置） -->
+      <!-- Section 1：宏觀指標 -->
       <div>
         <div class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
           <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 1: 核心全球宏觀指標
         </div>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <!-- 1. 美元指數 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
             <div class="text-slate-400 text-xs">美元指數 (DXY)</div>
             <div id="val-dxy" class="text-2xl font-bold font-mono-num mt-1">--</div>
             <div id="chg-dxy" class="text-xs font-mono-num mt-1 font-semibold">--</div>
           </div>
-          <!-- 2. 美元/台幣 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
             <div class="text-slate-400 text-xs">美元/台幣匯率 (USD/TWD)</div>
             <div id="val-usdtwd" class="text-2xl font-bold font-mono-num mt-1">--</div>
             <div id="chg-usdtwd" class="text-xs font-mono-num mt-1 font-semibold">--</div>
           </div>
-          <!-- 3. 10年期美債殖利率 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
             <div class="text-slate-400 text-xs">美國10年期公債殖利率 (^TNX)</div>
             <div id="val-us10y" class="text-2xl font-bold font-mono-num mt-1">--</div>
             <div id="chg-us10y" class="text-xs font-mono-num mt-1 font-semibold">--</div>
           </div>
-          <!-- 4. 國際油價 (WTI 原油) -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
             <div class="text-slate-400 text-xs">國際原油價格 (WTI Crude)</div>
             <div id="val-oil" class="text-2xl font-bold font-mono-num mt-1">--</div>
@@ -109,32 +93,26 @@
         </div>
       </div>
 
-      <!-- Section 2 & Section 3：跨市場熱力圖 與 衍生品籌碼 -->
+      <!-- Section 2 & Section 3 -->
       <div>
         <div class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
-          <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 2 & 3: 跨市場熱力圖與期權籌碼
+          <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 2 & 3: 跨市場熱力圖與期權籌碼觀測
         </div>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- 美股熱力圖 Widget -->
+          
+          <!-- 熱力圖 -->
           <div class="lg:col-span-2 bg-tradeCard border border-tradeBorder rounded-xl p-4 flex flex-col min-h-[480px]">
             <div class="text-sm font-bold text-slate-300 mb-3 flex items-center justify-between">
               <span>🌐 昨夜美股 S&P 500 板塊熱力圖</span>
               <span class="text-xs text-slate-500 font-mono-num">TradingView</span>
             </div>
             <div class="flex-1 w-full h-[400px] rounded-lg overflow-hidden border border-tradeBorder bg-slate-900">
-              <iframe 
-                src="https://s.tradingview.com/embed-widget/stock-heatmap/?colorTheme=dark&dataMode=market_cap&hasTopBar=false&isDataSetEnabled=false&locale=zh_TW&market=america" 
-                width="100%" 
-                height="100%" 
-                style="border: 0; min-height: 400px;" 
-                loading="lazy">
-              </iframe>
+              <iframe src="https://s.tradingview.com/embed-widget/stock-heatmap/?colorTheme=dark&dataMode=market_cap&hasTopBar=false&isDataSetEnabled=false&locale=zh_TW&market=america" width="100%" height="100%" style="border:0;" loading="lazy"></iframe>
             </div>
           </div>
 
-          <!-- 外資期權籌碼與結算倒數 -->
+          <!-- 籌碼摘要與互動按鈕 -->
           <div class="space-y-4 flex flex-col">
-            <!-- 結算提醒卡片 -->
             <div class="bg-gradient-to-br from-tradeCard to-slate-900 border border-tradeBorder rounded-xl p-5">
               <div class="flex items-center justify-between">
                 <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">🎯 衍生品結算日程</span>
@@ -144,63 +122,59 @@
               <div class="text-xs text-slate-400 mt-1">結算日期：<span id="settle-date" class="font-mono-num text-slate-200">--</span></div>
             </div>
 
-            <!-- 外資未平倉 & 選擇權 -->
-            <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5 space-y-4 flex-1">
-              <div class="text-xs font-bold uppercase tracking-wider text-slate-400">📊 期權籌碼觀測</div>
-              <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
-                <span class="text-xs text-slate-400">外資台指期留倉</span>
-                <div class="text-right font-mono-num">
-                  <div id="val-foreign-oi" class="font-bold text-slate-200">-- 口</div>
-                  <div id="val-foreign-diff" class="text-xs font-semibold">--</div>
+            <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5 space-y-4 flex-1 flex flex-col justify-between">
+              <div>
+                <div class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">📊 期權籌碼摘要</div>
+                <div class="space-y-3 text-xs">
+                  <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
+                    <span class="text-slate-400">外資台指期淨留倉</span>
+                    <span id="val-foreign-oi" class="font-bold font-mono-num text-slate-200">--</span>
+                  </div>
+                  <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
+                    <span class="text-slate-400">選擇權 P/C Ratio</span>
+                    <span id="val-pcr" class="font-bold font-mono-num text-slate-200">--</span>
+                  </div>
+                  <div class="flex justify-between border-b border-tradeBorder/60 pb-2">
+                    <span class="text-slate-400">選擇權支撐 / 壓力</span>
+                    <span id="val-support-pressure" class="font-bold font-mono-num text-amber-400">--</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span class="text-slate-400">台指夜盤收盤</span>
+                    <span id="val-night" class="font-bold font-mono-num text-slate-200">--</span>
+                  </div>
                 </div>
               </div>
-              <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
-                <span class="text-xs text-slate-400">選擇權 Put/Call Ratio</span>
-                <div id="val-pcr" class="font-bold font-mono-num text-slate-200">--%</div>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-xs text-slate-400">台指夜盤收盤</span>
-                <div class="text-right font-mono-num">
-                  <div id="val-night-close" class="font-bold text-slate-200">--</div>
-                  <div id="val-night-chg" class="text-xs font-semibold">--</div>
-                </div>
-              </div>
+
+              <!-- 點擊展開詳細籌碼按鈕 -->
+              <button onclick="openChipModal()" class="w-full py-2.5 bg-accentBlue hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition-all shadow-lg flex items-center justify-center space-x-2">
+                <span>🔍 點擊查看完整盤後籌碼明細</span>
+              </button>
             </div>
           </div>
+
         </div>
       </div>
 
-      <!-- Section 4：重大財經日程與焦點題材 -->
+      <!-- Section 4 -->
       <div>
         <div class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
           <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 4: 重大日程與焦點題材
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- 今日財經大事 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
-            <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
-              <span class="mr-2">📅</span> 本週重要財經日程與數據
-            </div>
-            <div id="list-macro-events" class="space-y-2.5">
-              <!-- 動態注入 -->
-            </div>
+            <div class="text-sm font-bold text-slate-200 mb-3 flex items-center"><span class="mr-2">📅</span> 本週重要財經日程與數據</div>
+            <div id="list-macro-events" class="space-y-2.5"></div>
           </div>
-
-          <!-- 焦點族群連動 -->
           <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
-            <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
-              <span class="mr-2">🔥</span> 盤前概念題材與強勢族群連動
-            </div>
-            <div id="list-focus-sectors" class="space-y-2.5">
-              <!-- 動態注入 -->
-            </div>
+            <div class="text-sm font-bold text-slate-200 mb-3 flex items-center"><span class="mr-2">🔥</span> 盤前概念題材與強勢族群連動</div>
+            <div id="list-focus-sectors" class="space-y-2.5"></div>
           </div>
         </div>
       </div>
 
     </div>
 
-    <!-- ==================== 模組 B：盤後總結分析 (Post-Market) ==================== -->
+    <!-- 盤後總結分頁 -->
     <div id="view-postmarket" class="hidden space-y-6">
       <div class="bg-tradeCard border border-tradeBorder rounded-2xl p-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-tradeBorder pb-4 mb-4 gap-2">
@@ -215,16 +189,110 @@
         </div>
         <div>
           <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">盤後 AI 深度解析</div>
-          <p id="post-summary" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
-            載入中...
-          </p>
+          <p id="post-summary" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">載入中...</p>
         </div>
       </div>
     </div>
-
   </main>
 
+  <!-- ==================== 完整盤後籌碼彈窗 (Modal) ==================== -->
+  <div id="chip-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-tradeCard border border-tradeBorder rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto p-6 space-y-6 shadow-2xl">
+      
+      <!-- Modal 標題列 -->
+      <div class="flex items-center justify-between border-b border-tradeBorder pb-4">
+        <div>
+          <h3 class="text-lg font-bold text-white flex items-center space-x-2">
+            <span>📊 華南期貨風格 - 完整盤後籌碼明細</span>
+          </h3>
+          <p id="modal-date" class="text-xs text-slate-400 mt-1">結算日期：--</p>
+        </div>
+        <button onclick="closeChipModal()" class="text-slate-400 hover:text-white text-xl font-bold px-3 py-1 rounded-lg bg-tradeBg border border-tradeBorder">✕</button>
+      </div>
+
+      <!-- 1. 現貨市場籌碼 -->
+      <div class="space-y-3">
+        <div class="text-xs uppercase font-bold text-accentBlue tracking-wider">■ 現貨市場 (Spot Market)</div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-tradeBg p-4 rounded-xl border border-tradeBorder">
+          <div>
+            <div class="text-xs text-slate-400">加權指數收盤 / 漲跌 / 成交量</div>
+            <div id="modal-spot-index" class="text-xl font-bold font-mono-num text-white mt-1">--</div>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-center text-xs">
+            <div class="bg-tradeCard p-2 rounded border border-tradeBorder">
+              <div class="text-slate-400 text-[10px]">外資買賣超</div>
+              <div id="modal-foreign-buy" class="font-bold font-mono-num mt-1">--</div>
+            </div>
+            <div class="bg-tradeCard p-2 rounded border border-tradeBorder">
+              <div class="text-slate-400 text-[10px]">投信買賣超</div>
+              <div id="modal-trust-buy" class="font-bold font-mono-num mt-1">--</div>
+            </div>
+            <div class="bg-tradeCard p-2 rounded border border-tradeBorder">
+              <div class="text-slate-400 text-[10px]">自營商買賣超</div>
+              <div id="modal-dealer-buy" class="font-bold font-mono-num mt-1">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. 期貨市場籌碼 (大台與小台) -->
+      <div class="space-y-3">
+        <div class="text-xs uppercase font-bold text-accentBlue tracking-wider">■ 期貨市場 (Futures Market - 台指期)</div>
+        <div class="bg-tradeBg p-4 rounded-xl border border-tradeBorder space-y-4">
+          <div class="flex justify-between items-center border-b border-tradeBorder pb-2 text-xs">
+            <span class="text-slate-300 font-bold">台指期收盤: <span id="modal-futures-price" class="text-white font-mono-num">--</span></span>
+            <span class="text-slate-300 font-bold">總未平倉量: <span id="modal-futures-oi" class="text-white font-mono-num">--</span></span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <!-- 大台未平倉 -->
+            <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
+              <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">大台未平倉口數 (淨留倉 / 增減)</div>
+              <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-large-f" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">投信</span><span id="m-large-t" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商</span><span id="m-large-d" class="font-mono-num font-bold">--</span></div>
+            </div>
+            <!-- 小台未平倉 -->
+            <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
+              <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">小台未平倉口數 (淨留倉 / 增減)</div>
+              <div class="flex justify-between"><span class="text-slate-400">外資</span><span id="m-small-f" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">投信</span><span id="m-small-t" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商</span><span id="m-small-d" class="font-mono-num font-bold">--</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 選擇權與情緒指標 (含 Max OI) -->
+      <div class="space-y-3">
+        <div class="text-xs uppercase font-bold text-accentBlue tracking-wider">■ 選擇權與情緒指標 (Options & Sentiment)</div>
+        <div class="bg-tradeBg p-4 rounded-xl border border-tradeBorder space-y-4 text-xs">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-2">
+              <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">外資與自營商選擇權未平倉</div>
+              <div class="flex justify-between"><span class="text-slate-400">外資 Call</span><span id="m-opt-fc" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">外資 Put</span><span id="m-opt-fp" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商 Call</span><span id="m-opt-dc" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">自營商 Put</span><span id="m-opt-dp" class="font-mono-num font-bold">--</span></div>
+            </div>
+            
+            <div class="bg-tradeCard p-3 rounded-lg border border-tradeBorder space-y-3">
+              <div class="font-bold text-slate-200 border-b border-tradeBorder pb-1">市場核心防守與情緒指標</div>
+              <div class="flex justify-between"><span class="text-slate-400">P/C Ratio</span><span id="m-opt-pcr" class="font-mono-num font-bold text-amber-400">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">VIX 恐慌指數</span><span id="m-opt-vix" class="font-mono-num font-bold">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Call 壓</span><span id="m-max-call" class="font-mono-num font-bold text-red-400">--</span></div>
+              <div class="flex justify-between"><span class="text-slate-400">選擇權最大 Put 撐</span><span id="m-max-put" class="font-mono-num font-bold text-emerald-400">--</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script>
+    let globalChipDetail = {};
+
     function switchView(mode) {
       const preView = document.getElementById('view-premarket');
       const postView = document.getElementById('view-postmarket');
@@ -244,6 +312,14 @@
       }
     }
 
+    function openChipModal() {
+      document.getElementById('chip-modal').classList.remove('hidden');
+    }
+
+    function closeChipModal() {
+      document.getElementById('chip-modal').classList.add('hidden');
+    }
+
     function formatChg(el, text, isUp) {
       if (!el) return;
       el.innerText = text;
@@ -260,22 +336,10 @@
         if (d.ai_brief) document.getElementById('pre-ai-brief').innerText = d.ai_brief;
 
         const m = d.macro || {};
-        if (m.DXY) {
-          document.getElementById('val-dxy').innerText = m.DXY.price;
-          formatChg(document.getElementById('chg-dxy'), `${m.DXY.change} (${m.DXY.change_pct})`, m.DXY.is_up);
-        }
-        if (m.USD_TWD) {
-          document.getElementById('val-usdtwd').innerText = m.USD_TWD.price;
-          formatChg(document.getElementById('chg-usdtwd'), `${m.USD_TWD.change} (${m.USD_TWD.change_pct})`, m.USD_TWD.is_up);
-        }
-        if (m.US10Y) {
-          document.getElementById('val-us10y').innerText = `${m.US10Y.price}%`;
-          formatChg(document.getElementById('chg-us10y'), `${m.US10Y.change} (${m.US10Y.change_pct})`, m.US10Y.is_up);
-        }
-        if (m.OIL) {
-          document.getElementById('val-oil').innerText = `$${m.OIL.price}`;
-          formatChg(document.getElementById('chg-oil'), `${m.OIL.change} (${m.OIL.change_pct})`, m.OIL.is_up);
-        }
+        if (m.DXY) { document.getElementById('val-dxy').innerText = m.DXY.price; formatChg(document.getElementById('chg-dxy'), `${m.DXY.change} (${m.DXY.change_pct})`, m.DXY.is_up); }
+        if (m.USD_TWD) { document.getElementById('val-usdtwd').innerText = m.USD_TWD.price; formatChg(document.getElementById('chg-usdtwd'), `${m.USD_TWD.change} (${m.USD_TWD.change_pct})`, m.USD_TWD.is_up); }
+        if (m.US10Y) { document.getElementById('val-us10y').innerText = `${m.US10Y.price}%`; formatChg(document.getElementById('chg-us10y'), `${m.US10Y.change} (${m.US10Y.change_pct})`, m.US10Y.is_up); }
+        if (m.OIL) { document.getElementById('val-oil').innerText = `$${m.OIL.price}`; formatChg(document.getElementById('chg-oil'), `${m.OIL.change} (${m.OIL.change_pct})`, m.OIL.is_up); }
 
         if (d.settle) {
           document.getElementById('settle-badge').innerText = d.settle.countdown;
@@ -283,23 +347,60 @@
           document.getElementById('settle-date').innerText = d.settle.settle_date;
         }
 
-        if (d.chips) {
-          document.getElementById('val-foreign-oi').innerText = `${d.chips.foreign_oi} 口`;
-          formatChg(document.getElementById('val-foreign-diff'), d.chips.foreign_oi_diff, d.chips.is_oi_up);
-          document.getElementById('val-pcr').innerText = d.chips.pc_ratio;
-          document.getElementById('val-night-close').innerText = d.chips.night_close;
-          formatChg(document.getElementById('val-night-chg'), d.chips.night_change, d.chips.is_night_up);
+        const cs = d.chips_summary || {};
+        if (cs.foreign_oi) {
+          document.getElementById('val-foreign-oi').innerText = `${cs.foreign_oi} (${cs.foreign_oi_diff})`;
+          document.getElementById('val-foreign-oi').className = cs.is_oi_up ? 'font-bold font-mono-num text-stockRed' : 'font-bold font-mono-num text-stockGreen';
+        }
+        if (cs.pc_ratio) document.getElementById('val-pcr').innerText = cs.pc_ratio;
+        if (cs.max_support) document.getElementById('val-support-pressure').innerText = `支撐 ${cs.max_support} / 壓力 ${cs.max_pressure}`;
+        if (cs.night_close) {
+          document.getElementById('val-night').innerText = `${cs.night_close} (${cs.night_change})`;
+          document.getElementById('val-night').className = cs.is_night_up ? 'font-bold font-mono-num text-stockRed' : 'font-bold font-mono-num text-stockGreen';
+        }
+
+        // 填充 Modal 詳細資料
+        if (d.chips_detail) {
+          const cd = d.chips_detail;
+          globalChipDetail = cd;
+          document.getElementById('modal-date').innerText = `資料日期：${cd.date}`;
+          
+          if (cd.spot) {
+            document.getElementById('modal-spot-index').innerText = `${cd.spot.index_close} (${cd.spot.change}, ${cd.spot.change_pct}) | 成交量 ${cd.spot.turnover}`;
+            document.getElementById('modal-foreign-buy').innerText = cd.spot.foreign_buy;
+            document.getElementById('modal-trust-buy').innerText = cd.spot.trust_buy;
+            document.getElementById('modal-dealer-buy').innerText = cd.spot.dealer_buy;
+          }
+
+          if (cd.futures) {
+            document.getElementById('modal-futures-price').innerText = `${cd.futures.taiex_futures} (${cd.futures.taiex_chg})`;
+            document.getElementById('modal-futures-oi').innerText = cd.futures.open_interest;
+            document.getElementById('m-large-f').innerText = `${cd.futures.foreign_large_oi} (${cd.futures.foreign_large_diff})`;
+            document.getElementById('m-large-t').innerText = `${cd.futures.trust_large_oi} (${cd.futures.trust_large_diff})`;
+            document.getElementById('m-large-d').innerText = `${cd.futures.dealer_large_oi} (${cd.futures.dealer_large_diff})`;
+            document.getElementById('m-small-f').innerText = `${cd.futures.foreign_small_oi} (${cd.futures.foreign_small_diff})`;
+            document.getElementById('m-small-t').innerText = `${cd.futures.trust_small_oi} (${cd.futures.trust_small_diff})`;
+            document.getElementById('m-small-d').innerText = `${cd.futures.dealer_small_oi} (${cd.futures.dealer_small_diff})`;
+          }
+
+          if (cd.options) {
+            document.getElementById('m-opt-fc').innerText = cd.options.foreign_call;
+            document.getElementById('m-opt-fp').innerText = cd.options.foreign_put;
+            document.getElementById('m-opt-dc').innerText = cd.options.dealer_call;
+            document.getElementById('m-opt-dp').innerText = cd.options.dealer_put;
+            document.getElementById('m-opt-pcr').innerText = `${cd.options.pc_ratio} (${cd.options.pc_ratio_diff})`;
+            document.getElementById('m-opt-vix').innerText = `${cd.options.vix} (${cd.options.vix_diff})`;
+            document.getElementById('m-max-call').innerText = cd.options.max_call_strike;
+            document.getElementById('m-max-put').innerText = cd.options.max_put_strike;
+          }
         }
 
         const evtContainer = document.getElementById('list-macro-events');
         if (evtContainer && d.macro_events) {
           evtContainer.innerHTML = d.macro_events.map(e => `
             <div class="flex items-center justify-between p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs">
-              <div>
-                <span class="text-accentBlue font-mono-num font-bold mr-2">${e.time}</span>
-                <span class="text-slate-200">${e.event}</span>
-              </div>
-              <span class="px-2 py-0.5 rounded text-[10px] font-bold ${e.impact && (e.impact.includes('Critical') || e.impact.includes('高')) ? 'bg-red-500/20 text-red-400' : 'bg-slate-700 text-slate-300'}">${e.impact}</span>
+              <div><span class="text-accentBlue font-mono-num font-bold mr-2">${e.time}</span><span class="text-slate-200">${e.event}</span></div>
+              <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-500/20 text-red-400">${e.impact}</span>
             </div>
           `).join('');
         }
@@ -308,18 +409,13 @@
         if (secContainer && d.focus_sectors) {
           secContainer.innerHTML = d.focus_sectors.map(s => `
             <div class="p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs space-y-1">
-              <div class="flex items-center justify-between">
-                <span class="font-bold text-slate-200">${s.sector}</span>
-                <span class="px-1.5 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-400">${s.tag}</span>
-              </div>
+              <div class="flex items-center justify-between"><span class="font-bold text-slate-200">${s.sector}</span><span class="px-1.5 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-400">${s.tag}</span></div>
               <div class="text-slate-400 text-[11px]">${s.catalyst}</div>
             </div>
           `).join('');
         }
 
-      } catch (e) {
-        console.error("載入盤前資料失敗:", e);
-      }
+      } catch (e) { console.error("載入資料失敗:", e); }
     }
 
     async function loadPostmarketData() {
@@ -327,22 +423,16 @@
         const res = await fetch(`market_data.json?t=${Date.now()}`);
         if (!res.ok) return;
         const d = await res.json();
-
         document.getElementById('post-index').innerText = d.index_close || '--';
         document.getElementById('post-change').innerText = `${d.change || ''} (${d.change_percent || ''})`;
         const isUp = !(d.change || '').includes('-');
         document.getElementById('post-change').className = `text-xl font-bold font-mono-num ${isUp ? 'text-stockRed' : 'text-stockGreen'}`;
         document.getElementById('post-date').innerText = d.date || '';
         document.getElementById('post-summary').innerText = d.summary || '';
-      } catch (e) {
-        console.error("載入盤後資料失敗:", e);
-      }
+      } catch (e) { console.error("載入盤後失敗:", e); }
     }
 
-    window.onload = () => {
-      loadPremarketData();
-      loadPostmarketData();
-    };
+    window.onload = () => { loadPremarketData(); loadPostmarketData(); };
   </script>
 </body>
 </html>

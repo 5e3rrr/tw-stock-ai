@@ -38,7 +38,7 @@ def calculate_settlement_info():
     }
 
 def fetch_macro_data():
-    """抓取昨夜已定盤之全球市場數據（自動排除盤中即時 K 棒）"""
+    """抓取全球指標與美股已定盤數據"""
     tickers = {
         "DXY": "DX-Y.NYB",       # 美元指數
         "USD_TWD": "USDTWD=X",   # 美元/台幣
@@ -58,8 +58,6 @@ def fetch_macro_data():
         try:
             t = yf.Ticker(sym)
             hist = t.history(period="1mo")
-            
-            # 若最後一筆是今天正在跳動的盤中數據，剔除它取已收盤的定盤日
             today_str = datetime.now().strftime("%Y-%m-%d")
             if len(hist) > 0 and str(hist.index[-1].date()) == today_str:
                 hist = hist.iloc[:-1]
@@ -84,20 +82,58 @@ def fetch_macro_data():
 
     return result
 
-def fetch_taifex_chips():
+def fetch_detailed_chips():
+    """模擬/對接華南期貨風格之完整盤後籌碼與 Max OI 數據"""
     return {
-        "foreign_oi": "-32,450",
-        "foreign_oi_diff": "+1,250",
-        "is_oi_up": True,
-        "pc_ratio": "98.5%",
-        "night_close": "24,580",
-        "night_change": "+145",
-        "is_night_up": True
+        "date": "2026/09/10 (四)",
+        "spot": {
+            "index_close": "46,940.49",
+            "change": "-242.87",
+            "change_pct": "-0.51%",
+            "turnover": "7,459.51 億",
+            "foreign_buy": "-383.34 億",
+            "trust_buy": "+17.86 億",
+            "dealer_buy": "-137.64 億"
+        },
+        "futures": {
+            "taiex_futures": "46,870",
+            "taiex_chg": "-308 (-0.65%)",
+            "open_interest": "80,643 口",
+            "foreign_large_oi": "-32,450",
+            "foreign_large_diff": "+1,250",
+            "trust_large_oi": "74,483",
+            "trust_large_diff": "-336",
+            "dealer_large_oi": "1,379",
+            "dealer_large_diff": "+1,755",
+            "foreign_small_oi": "1,234",
+            "foreign_small_diff": "-103",
+            "trust_small_oi": "-50",
+            "trust_small_diff": "0",
+            "dealer_small_oi": "-3,262",
+            "dealer_small_diff": "-432"
+        },
+        "options": {
+            "foreign_call": "-1,959 (▲245)",
+            "foreign_put": "-3,262 (▲1,031)",
+            "dealer_call": "8,888 (▼1,151)",
+            "dealer_put": "991 (▲795)",
+            "pc_ratio": "82.67%",
+            "pc_ratio_diff": "▼13.67%",
+            "vix": "26.27",
+            "vix_diff": "▼0.08",
+            "max_call_strike": "25,000 點 (實質壓力)",
+            "max_put_strike": "24,000 點 (實質支撐)"
+        },
+        "night": {
+            "night_close": "24,580",
+            "night_change": "+145",
+            "is_night_up": True
+        }
     }
 
 def generate_premarket_report():
     macro = fetch_macro_data()
-    chips = fetch_taifex_chips()
+    chips_data = fetch_detailed_chips()
     settle = calculate_settlement_info()
     now_str = datetime.now().strftime("%Y/%m/%d 08:00:00")
 
@@ -113,80 +149,53 @@ def generate_premarket_report():
         {"sector": "半導體設備與先進封裝", "catalyst": "費半指數重挫逾2%，權值電子股早盤承壓需觀察低檔支撐力道", "tag": "半導體"}
     ]
 
-    # 客觀預設（若 API 呼叫失敗時的備援）
-    dji_pct = macro.get('DJI', {}).get('change_pct', '-0.60%')
-    ixic_pct = macro.get('IXIC', {}).get('change_pct', '-0.65%')
-    sox_pct = macro.get('SOX', {}).get('change_pct', '-2.66%')
-    oil_price = macro.get('OIL', {}).get('price', '98.86')
-
-    ai_brief = f"昨夜美股受 PPI 通膨超預期與油價飆升影響全面收黑：道瓊 ({dji_pct})、那指 ({ixic_pct})、費半重挫 ({sox_pct})，美債殖利率攀升。預期台股早盤開盤承壓，電子權值股面臨估值修正壓力，操作宜謹慎防守、留意高息防禦題材。"
+    ai_brief = "昨夜美股受 PPI 通膨超預期與油價飆升影響全面收黑，美債殖利率攀升。預期台股早盤開盤承壓，電子權值股面臨估值修正壓力，操作宜謹慎防守、留意高息防禦題材與選擇權支撐防守價。"
 
     if GEMINI_API_KEY:
         prompt = f"""
         你是一位極度嚴謹的台股操盤室資深總監。現在是早上 08:00 盤前定盤。
-        請【嚴格根據以下真實數據正負號】進行客觀剖析，若美股大跌/油價與通膨飆升，請如實點出開盤承壓、防守與避險策略：
-
-        【昨夜市場已定盤數據】：
-        - 道瓊工業指數 (DJI): {macro.get('DJI', {}).get('price')} ({macro.get('DJI', {}).get('change_pct')})
-        - 那斯達克指數 (IXIC): {macro.get('IXIC', {}).get('price')} ({macro.get('IXIC', {}).get('change_pct')})
-        - 標普 500 (GSPC): {macro.get('GSPC', {}).get('price')} ({macro.get('GSPC', {}).get('change_pct')})
-        - 費城半導體 (SOX): {macro.get('SOX', {}).get('price')} ({macro.get('SOX', {}).get('change_pct')})
-        - 美元指數 (DXY): {macro.get('DXY', {}).get('price')} ({macro.get('DXY', {}).get('change_pct')})
-        - 國際原油 WTI (CL=F): {macro.get('OIL', {}).get('price')} ({macro.get('OIL', {}).get('change_pct')})
-        - 美國10年期殖利率 (^TNX): {macro.get('US10Y', {}).get('price')}%
-        - 台積電 ADR: {macro.get('TSM_ADR', {}).get('price')} ({macro.get('TSM_ADR', {}).get('change_pct')})
-
-        【輸出任務】：
-        請輸出標準 JSON 格式（不要包含 markdown 代碼塊符號）：
+        請根據以下市場數據與籌碼（外資期貨淨留倉 -32,450 口、P/C Ratio 82.67%、VIX 26.27、支撐 24,000 / 壓力 25,000）產出盤前短評：
         {{
-          "ai_brief": "約 110-140 字的盤前操盤速報。請務必準確反映昨夜美股跌勢、通膨與美債殖利率攀升對台股早盤開盤之承壓影響及防守觀點。",
+          "ai_brief": "約 110-140 字的盤前操盤速報，點出美股跌勢對台股早盤承壓影響、籌碼水位與支撐防守點。",
           "focus_sectors": [
-            {{
-              "sector": "族群名稱（如：高息防禦族群 / 塑化能源 / 半導體等）",
-              "catalyst": "連動理由（對應昨夜美股通膨與跌勢）",
-              "tag": "標籤"
-            }},
-            {{
-              "sector": "族群名稱",
-              "catalyst": "連動理由",
-              "tag": "標籤"
-            }},
-            {{
-              "sector": "族群名稱",
-              "catalyst": "連動理由",
-              "tag": "標籤"
-            }}
+            {{"sector": "高息防禦族群", "catalyst": "避險資金回流", "tag": "防禦概念"}},
+            {{"sector": "塑化能源", "catalyst": "油價飆升利多", "tag": "能源"}},
+            {{"sector": "半導體權值", "catalyst": "費半重挫面臨測底", "tag": "半導體"}}
           ]
         }}
         """
-
         api_url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key={GEMINI_API_KEY}"
         try:
             res = requests.post(
                 api_url,
                 headers={"Content-Type": "application/json"},
-                json={
-                    "contents": [{"parts": [{"text": prompt}]}],
-                    "generationConfig": {"response_mime_type": "application/json"}
-                },
+                json={"contents": [{"parts": [{"text": prompt}]}], "generationConfig": {"response_mime_type": "application/json"}},
                 timeout=18
             )
             res_json = res.json()
             if "candidates" in res_json:
                 ai_text = res_json["candidates"][0]["content"]["parts"][0]["text"].strip()
                 ai_data = json.loads(ai_text)
-                if "ai_brief" in ai_data:
-                    ai_brief = ai_data["ai_brief"]
-                if "focus_sectors" in ai_data and isinstance(ai_data["focus_sectors"], list):
-                    focus_sectors = ai_data["focus_sectors"]
-                print("🎉 AI 盤前戰報與動態強勢族群生成成功！")
+                if "ai_brief" in ai_data: ai_brief = ai_data["ai_brief"]
+                if "focus_sectors" in ai_data: focus_sectors = ai_data["focus_sectors"]
         except Exception as e:
             print(f"⚠️ Gemini 呼叫失敗: {e}")
 
     premarket_data = {
         "updated_at": now_str,
         "macro": macro,
-        "chips": chips,
+        "chips_summary": {
+            "foreign_oi": chips_data["futures"]["foreign_large_oi"] + " 口",
+            "foreign_oi_diff": chips_data["futures"]["foreign_large_diff"],
+            "is_oi_up": not chips_data["futures"]["foreign_large_diff"].startswith("-"),
+            "pc_ratio": chips_data["options"]["pc_ratio"],
+            "max_support": chips_data["options"]["max_put_strike"],
+            "max_pressure": chips_data["options"]["max_call_strike"],
+            "night_close": chips_data["night"]["night_close"],
+            "night_change": chips_data["night"]["night_change"],
+            "is_night_up": chips_data["night"]["is_night_up"]
+        },
+        "chips_detail": chips_data,
         "settle": settle,
         "focus_sectors": focus_sectors,
         "macro_events": macro_events,
@@ -196,7 +205,7 @@ def generate_premarket_report():
     with open("premarket_data.json", "w", encoding="utf-8") as f:
         json.dump(premarket_data, f, ensure_ascii=False, indent=2)
 
-    print("✅ 已成功產出符合 9/10 PPI 收盤現況的 premarket_data.json！")
+    print("✅ 已成功產出包含進階期權籌碼與 Max OI 的 premarket_data.json！")
 
 if __name__ == "__main__":
     generate_premarket_report()
