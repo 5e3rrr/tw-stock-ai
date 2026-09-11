@@ -1,220 +1,342 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="zh-TW" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>股市資訊站 - 盤後報告</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>台股 AI 操盤指揮中心 | 盤前盤後全方位監控</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            tradeBg: '#0b0e14',
+            tradeCard: '#151a23',
+            tradeBorder: '#232a3b',
+            stockRed: '#ef4444',
+            stockGreen: '#10b981',
+            accentBlue: '#3b82f6'
+          }
         }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #F4F7FA;
-            color: #2D3748;
-            padding: 16px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-        }
-
-        /* 頂部標題卡片：你的專屬主色調 #5687b8 */
-        .header-card {
-            background: linear-gradient(135deg, #5687b8 0%, #3d6a97 100%);
-            color: #FFFFFF;
-            border-radius: 16px;
-            padding: 18px 20px;
-            margin-bottom: 14px;
-            box-shadow: 0 4px 14px rgba(86, 135, 184, 0.25);
-        }
-
-        .header-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            letter-spacing: 0.5px;
-        }
-
-        .header-desc {
-            font-size: 11px;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-
-        .report-section-title {
-            font-size: 13px;
-            color: #5687b8;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        .report-main-title {
-            font-size: 24px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #1A202C;
-        }
-
-        .refresh-btn {
-            font-size: 12px;
-            font-weight: 600;
-            background: #FFFFFF;
-            color: #5687b8;
-            border: 1px solid #D1E0EE;
-            padding: 6px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-        }
-
-        .update-time {
-            font-size: 12px;
-            color: #718096;
-            margin-bottom: 14px;
-        }
-
-        .notice-banner {
-            background-color: #EBF3FA;
-            border: 1px solid #D0E3F3;
-            color: #2C5282;
-            padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 16px;
-        }
-
-        .card {
-            background: #FFFFFF;
-            border-radius: 14px;
-            padding: 16px 18px;
-            margin-bottom: 12px;
-            border: 1px solid #E8EEF5;
-            box-shadow: 0 2px 8px rgba(86, 135, 184, 0.06);
-        }
-
-        .card-label {
-            font-size: 13px;
-            color: #718096;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .card-value {
-            font-size: 28px;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .card-subtext {
-            font-size: 12px;
-            color: #A0AEC0;
-            margin-top: 6px;
-        }
-
-        .down {
-            color: #2E7D32;
-        }
-
-        .up {
-            color: #D32F2F;
-        }
-
-        .summary-box {
-            font-size: 14px;
-            line-height: 1.75;
-            color: #4A5568;
-            white-space: pre-line;
-        }
-
-        .footer-note {
-            text-align: center;
-            font-size: 11px;
-            color: #A0AEC0;
-            margin: 20px 0 10px;
-        }
-    </style>
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap');
+    body {
+      font-family: 'Noto Sans TC', sans-serif;
+    }
+    .font-mono-num {
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        <!-- 頂部區塊 -->
-        <div class="header-card">
-            <div class="header-title">股市資訊站</div>
-            <div class="header-desc">無任何買賣建議，請勿隨意轉發<br>該網頁為盤後產業觀察報告，資訊為 AI 整理</div>
+<body class="bg-tradeBg text-slate-100 min-h-screen">
+
+  <!-- 頂部 Navigation & 模式切換 -->
+  <header class="border-b border-tradeBorder bg-tradeCard/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="h-3 w-3 rounded-full bg-emerald-500 animate-ping"></div>
+        <span class="text-xl font-bold tracking-wider text-white">TW-STOCK <span class="text-accentBlue">AI TERMINAL</span></span>
+      </div>
+
+      <!-- 切換按鈕 -->
+      <div class="flex bg-tradeBg p-1 rounded-xl border border-tradeBorder">
+        <button id="btn-premarket" onclick="switchView('premarket')" class="px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200 bg-accentBlue text-white shadow-lg">
+          ☀️ 08:00 盤前監控
+        </button>
+        <button id="btn-postmarket" onclick="switchView('postmarket')" class="px-5 py-2 rounded-lg font-medium text-sm transition-all duration-200 text-slate-400 hover:text-white">
+          🌙 盤後大盤總結
+        </button>
+      </div>
+
+      <div class="text-xs text-slate-400 font-mono-num">
+        定盤時間：<span id="update-time" class="text-slate-200">2026/09/11 08:00:00</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- 主內容容器 -->
+  <main class="max-w-7xl mx-auto px-4 py-6 space-y-6">
+
+    <!-- ==================== 模組 A：盤前監控儀表板 (Pre-Market) ==================== -->
+    <div id="view-premarket" class="space-y-6">
+
+      <!-- AI 盤前速報 -->
+      <div class="bg-gradient-to-r from-blue-950/40 via-tradeCard to-tradeCard border border-accentBlue/30 rounded-2xl p-5 shadow-xl">
+        <div class="flex items-center space-x-2 text-accentBlue font-bold text-sm mb-2">
+          <span>⚡</span>
+          <span>GEMINI 3.6 盤前智能操盤戰報</span>
+        </div>
+        <p id="pre-ai-brief" class="text-slate-300 text-sm leading-relaxed">
+          資料載入中...
+        </p>
+      </div>
+
+      <!-- Section 1：核心客觀宏觀指標（4 格黃金配置） -->
+      <div>
+        <h2 class="text-xs uppercase font-bold tracking-widest text-slate-400 mb-3 flex items-center">
+          <span class="w-2 h-2 rounded bg-accentBlue mr-2"></span> SECTION 1: 核心全球宏觀指標
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- 美元指數 -->
+          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
+            <div class="text-slate-400 text-xs">美元指數 (DXY)</div>
+            <div id="val-dxy" class="text-2xl font-bold font-mono-num mt-1">--</div>
+            <div id="chg-dxy" class="text-xs font-mono-num mt-1 font-semibold">--</div>
+          </div>
+          <!-- 亞幣與台幣 -->
+          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
+            <div class="text-slate-400 text-xs">美元/台幣匯率 (USD/TWD)</div>
+            <div id="val-usdtwd" class="text-2xl font-bold font-mono-num mt-1">--</div>
+            <div id="chg-usdtwd" class="text-xs font-mono-num mt-1 font-semibold">--</div>
+          </div>
+          <!-- 10年期美債殖利率 -->
+          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
+            <div class="text-slate-400 text-xs">美國10年期公債殖利率 (^TNX)</div>
+            <div id="val-us10y" class="text-2xl font-bold font-mono-num mt-1">--%</div>
+            <div id="chg-us10y" class="text-xs font-mono-num mt-1 font-semibold">--</div>
+          </div>
+          <!-- 國際油價 / 費半 -->
+          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-4">
+            <div class="text-slate-400 text-xs">台積電 ADR (TSM) / 費半連動</div>
+            <div id="val-tsm" class="text-2xl font-bold font-mono-num mt-1">--</div>
+            <div id="chg-tsm" class="text-xs font-mono-num mt-1 font-semibold">--</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2：核心視覺與跨市場熱力圖 -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <!-- 美股熱力圖 Widget (佔 2 欄) -->
+        <div class="lg:col-span-2 bg-tradeCard border border-tradeBorder rounded-xl p-4 flex flex-col h-[500px]">
+          <div class="text-sm font-bold text-slate-300 mb-3 flex items-center justify-between">
+            <span>🌐 昨夜美股 S&P 500 板塊板塊熱力圖</span>
+            <span class="text-xs text-slate-500">TradingView Embed</span>
+          </div>
+          <div class="flex-1 rounded-lg overflow-hidden border border-tradeBorder">
+            <iframe 
+              src="https://s.tradingview.com/embed-widget/stock-heatmap/?colorTheme=dark&dataMode=market_cap&hasTopBar=false&isDataSetEnabled=false&locale=zh_TW&market=america" 
+              width="100%" 
+              height="100%" 
+              style="border: 0;" 
+              loading="lazy">
+            </iframe>
+          </div>
         </div>
 
-        <div class="report-section-title">每日產業觀察</div>
-        <div class="report-main-title">
-            台股盤後報告
-            <button class="refresh-btn" onclick="location.reload()">重新讀取報告</button>
-        </div>
-        <div class="update-time" id="update-time">載入中...</div>
-
-        <div class="notice-banner">
-            目前顯示最近已發布報告，每日盤後約 16:00 自動更新。
-        </div>
-
-        <!-- 加權指數收盤 -->
-        <div class="card">
-            <div class="card-label">加權指數收盤</div>
-            <div class="card-value" id="close-price">--</div>
-            <div class="card-subtext" id="report-date">點 | --</div>
-        </div>
-
-        <!-- 當日漲跌 -->
-        <div class="card">
-            <div class="card-label">當日漲跌</div>
-            <div class="card-value down" id="price-change">--</div>
-            <div class="card-subtext" id="price-percent">--</div>
-        </div>
-
-        <!-- 今日盤勢重點 -->
-        <div class="card">
-            <div class="card-label" style="font-weight: 700; color: #2D3748;">今日盤勢重點</div>
-            <div class="summary-box" id="market-summary">
-                正在讀取盤後報告資料...
+        <!-- Section 3：外資期權籌碼與結算倒數 (佔 1 欄) -->
+        <div class="space-y-4">
+          <!-- 結算提醒卡片 -->
+          <div class="bg-gradient-to-br from-tradeCard to-slate-900 border border-tradeBorder rounded-xl p-5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-400 uppercase tracking-wider">🎯 衍生品結算日程</span>
+              <span id="settle-badge" class="px-2 py-0.5 rounded text-xs bg-amber-400/10 text-amber-400 font-mono-num font-bold">倒數 -- 天</span>
             </div>
+            <div id="settle-type" class="text-lg font-bold text-white mt-2">台指期【月結算】</div>
+            <div class="text-xs text-slate-400 mt-1">結算日期：<span id="settle-date" class="font-mono-num text-slate-200">--</span></div>
+          </div>
+
+          <!-- 外資未平倉 & 選擇權 -->
+          <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5 space-y-4">
+            <div class="text-xs font-bold uppercase tracking-wider text-slate-400">📊 期權籌碼觀測</div>
+            <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
+              <span class="text-xs text-slate-400">外資台指期未平倉</span>
+              <div class="text-right font-mono-num">
+                <div id="val-foreign-oi" class="font-bold text-slate-200">-- 口</div>
+                <div id="val-foreign-diff" class="text-xs font-semibold">--</div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center border-b border-tradeBorder/60 pb-3">
+              <span class="text-xs text-slate-400">選擇權 Put/Call Ratio</span>
+              <div id="val-pcr" class="font-bold font-mono-num text-slate-200">--%</div>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-xs text-slate-400">台指夜盤收盤</span>
+              <div class="text-right font-mono-num">
+                <div id="val-night-close" class="font-bold text-slate-200">--</div>
+                <div id="val-night-chg" class="text-xs font-semibold">--</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 4：重大財經日程與焦點題材 -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- 今日財經大事 -->
+        <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
+          <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
+            <span class="mr-2">📅</span> 本週重要財經日程與數據
+          </div>
+          <div id="list-macro-events" class="space-y-2.5">
+            <!-- 動態注入 -->
+          </div>
         </div>
 
-        <div class="footer-note">
-            股市資訊站 ｜ AI 盤後整理 ｜ 無買賣建議 ｜ 請勿隨意轉發
+        <!-- 焦點族群連動 -->
+        <div class="bg-tradeCard border border-tradeBorder rounded-xl p-5">
+          <div class="text-sm font-bold text-slate-200 mb-3 flex items-center">
+            <span class="mr-2">🔥</span> 盤前概念題材與強勢族群連動
+          </div>
+          <div id="list-focus-sectors" class="space-y-2.5">
+            <!-- 動態注入 -->
+          </div>
         </div>
+      </div>
+
     </div>
 
-    <script>
-        fetch('./market_data.json')
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('update-time').innerText = `${data.date || ''} 盤後・更新於 ${data.updated_at || ''}`;
-                document.getElementById('close-price').innerText = data.index_close || '47,105.78';
-                document.getElementById('report-date').innerText = `點 | ${data.date || ''}`;
-                
-                const changeEl = document.getElementById('price-change');
-                const changeVal = data.change || '-220.49 點';
-                changeEl.innerText = changeVal;
-                
-                if (changeVal.includes('-')) {
-                    changeEl.className = 'card-value down';
-                } else {
-                    changeEl.className = 'card-value up';
-                }
+    <!-- ==================== 模組 B：盤後總結分析 (Post-Market) ==================== -->
+    <div id="view-postmarket" class="hidden space-y-6">
+      <div class="bg-tradeCard border border-tradeBorder rounded-2xl p-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-tradeBorder pb-4 mb-4 gap-2">
+          <div>
+            <div class="text-xs text-slate-400 font-bold uppercase tracking-wider">TAIEX 台灣加權指數收盤</div>
+            <div id="post-index" class="text-3xl sm:text-4xl font-black font-mono-num mt-1 text-white">--</div>
+          </div>
+          <div class="text-right">
+            <div id="post-change" class="text-xl font-bold font-mono-num">--</div>
+            <div id="post-date" class="text-xs text-slate-400 mt-1">--</div>
+          </div>
+        </div>
+        <div>
+          <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">盤後 AI 深度解析</div>
+          <p id="post-summary" class="text-slate-300 text-sm leading-relaxed whitespace-pre-line">
+            載入中...
+          </p>
+        </div>
+      </div>
+    </div>
 
-                document.getElementById('price-percent').innerText = data.change_percent ? `跌幅 ${data.change_percent}` : '下跌 0.47%';
-                document.getElementById('market-summary').innerText = data.summary || '今日台股呈現震盪整理格局，權值股漲跌互見，資金輪動至中小型題材族群。';
-            })
-            .catch(err => {
-                console.log('尚未找到 market_data.json，顯示預設範本');
-            });
-    </script>
+  </main>
+
+  <script>
+    // 切換盤前 / 盤後分頁
+    function switchView(mode) {
+      const preView = document.getElementById('view-premarket');
+      const postView = document.getElementById('view-postmarket');
+      const btnPre = document.getElementById('btn-premarket');
+      const btnPost = document.getElementById('btn-postmarket');
+
+      if (mode === 'premarket') {
+        preView.classList.remove('hidden');
+        postView.classList.add('hidden');
+        btnPre.className = "px-5 py-2 rounded-lg font-medium text-sm bg-accentBlue text-white shadow-lg";
+        btnPost.className = "px-5 py-2 rounded-lg font-medium text-sm text-slate-400 hover:text-white";
+      } else {
+        preView.classList.add('hidden');
+        postView.classList.remove('hidden');
+        btnPost.className = "px-5 py-2 rounded-lg font-medium text-sm bg-accentBlue text-white shadow-lg";
+        btnPre.className = "px-5 py-2 rounded-lg font-medium text-sm text-slate-400 hover:text-white";
+      }
+    }
+
+    // 格式化漲跌顏色
+    function formatChg(el, text, isUp) {
+      el.innerText = text;
+      el.className = isUp ? 'text-xs font-mono-num font-semibold text-stockRed' : 'text-xs font-mono-num font-semibold text-stockGreen';
+    }
+
+    // 載入盤前資料
+    async function loadPremarketData() {
+      try {
+        const res = await fetch(`premarket_data.json?v=${new Date().getTime()}`);
+        if (!res.ok) return;
+        const d = await res.json();
+
+        document.getElementById('update-time').innerText = d.updated_at || '--';
+        document.getElementById('pre-ai-brief').innerText = d.ai_brief || '';
+
+        // 宏觀指標
+        const m = d.macro || {};
+        if (m.DXY) {
+          document.getElementById('val-dxy').innerText = m.DXY.price;
+          formatChg(document.getElementById('chg-dxy'), `${m.DXY.change} (${m.DXY.change_pct})`, m.DXY.is_up);
+        }
+        if (m.USD_TWD) {
+          document.getElementById('val-usdtwd').innerText = m.USD_TWD.price;
+          formatChg(document.getElementById('chg-usdtwd'), `${m.USD_TWD.change} (${m.USD_TWD.change_pct})`, m.USD_TWD.is_up);
+        }
+        if (m.US10Y) {
+          document.getElementById('val-us10y').innerText = `${m.US10Y.price}%`;
+          formatChg(document.getElementById('chg-us10y'), `${m.US10Y.change} (${m.US10Y.change_pct})`, m.US10Y.is_up);
+        }
+        if (m.TSM_ADR) {
+          document.getElementById('val-tsm').innerText = `$${m.TSM_ADR.price}`;
+          formatChg(document.getElementById('chg-tsm'), `${m.TSM_ADR.change} (${m.TSM_ADR.change_pct})`, m.TSM_ADR.is_up);
+        }
+
+        // 結算日
+        if (d.settle) {
+          document.getElementById('settle-badge').innerText = d.settle.countdown;
+          document.getElementById('settle-type').innerText = d.settle.settle_type;
+          document.getElementById('settle-date').innerText = d.settle.settle_date;
+        }
+
+        // 籌碼
+        if (d.chips) {
+          document.getElementById('val-foreign-oi').innerText = `${d.chips.foreign_oi} 口`;
+          formatChg(document.getElementById('val-foreign-diff'), d.chips.foreign_oi_diff, d.chips.is_oi_up);
+          document.getElementById('val-pcr').innerText = d.chips.pc_ratio;
+          document.getElementById('val-night-close').innerText = d.chips.night_close;
+          formatChg(document.getElementById('val-night-chg'), d.chips.night_change, d.chips.is_night_up);
+        }
+
+        // 行程日程列表
+        const evtContainer = document.getElementById('list-macro-events');
+        evtContainer.innerHTML = (d.macro_events || []).map(e => `
+          <div class="flex items-center justify-between p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs">
+            <div>
+              <span class="text-accentBlue font-mono-num font-bold mr-2">${e.time}</span>
+              <span class="text-slate-200">${e.event}</span>
+            </div>
+            <span class="px-2 py-0.5 rounded text-[10px] font-bold ${e.impact.includes('Critical') || e.impact.includes('高') ? 'bg-red-500/20 text-red-400' : 'bg-slate-700 text-slate-300'}">${e.impact}</span>
+          </div>
+        `).join('');
+
+        // 焦點族群列表
+        const secContainer = document.getElementById('list-focus-sectors');
+        secContainer.innerHTML = (d.focus_sectors || []).map(s => `
+          <div class="p-2.5 rounded-lg bg-tradeBg border border-tradeBorder text-xs space-y-1">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-slate-200">${s.sector}</span>
+              <span class="px-1.5 py-0.5 rounded text-[10px] bg-blue-500/20 text-blue-400">${s.tag}</span>
+            </div>
+            <div class="text-slate-400 text-[11px]">${s.catalyst}</div>
+          </div>
+        `).join('');
+
+      } catch (e) {
+        console.error("載入盤前資料失敗:", e);
+      }
+    }
+
+    // 載入盤後資料
+    async function loadPostmarketData() {
+      try {
+        const res = await fetch(`market_data.json?v=${new Date().getTime()}`);
+        if (!res.ok) return;
+        const d = await res.json();
+
+        document.getElementById('post-index').innerText = d.index_close || '--';
+        document.getElementById('post-change').innerText = `${d.change || ''} (${d.change_percent || ''})`;
+        const isUp = !(d.change || '').includes('-');
+        document.getElementById('post-change').className = `text-xl font-bold font-mono-num ${isUp ? 'text-stockRed' : 'text-stockGreen'}`;
+        document.getElementById('post-date').innerText = d.date || '';
+        document.getElementById('post-summary').innerText = d.summary || '';
+      } catch (e) {
+        console.error("載入盤後資料失敗:", e);
+      }
+    }
+
+    window.onload = () => {
+      loadPremarketData();
+      loadPostmarketData();
+    };
+  </script>
 </body>
 </html>

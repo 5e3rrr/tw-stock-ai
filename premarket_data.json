@@ -1,0 +1,103 @@
+{
+  "updated_at": "2026/09/11 08:00:00",
+  "macro": {
+    "DXY": {
+      "price": "99.02",
+      "change": "-0.07",
+      "change_pct": "-0.07%",
+      "is_up": false
+    },
+    "USD_TWD": {
+      "price": "31.60",
+      "change": "+0.14",
+      "change_pct": "+0.44%",
+      "is_up": true
+    },
+    "USD_CNH": {
+      "price": "--",
+      "change": "0.00",
+      "change_pct": "0.00%",
+      "is_up": true
+    },
+    "USD_KRW": {
+      "price": "1,338.98",
+      "change": "-0.19",
+      "change_pct": "-0.01%",
+      "is_up": false
+    },
+    "US10Y": {
+      "price": "4.91",
+      "change": "-0.03",
+      "change_pct": "-0.69%",
+      "is_up": false
+    },
+    "OIL": {
+      "price": "98.70",
+      "change": "-3.78",
+      "change_pct": "-3.69%",
+      "is_up": false
+    },
+    "TSM_ADR": {
+      "price": "428.03",
+      "change": "-7.33",
+      "change_pct": "-1.68%",
+      "is_up": false
+    },
+    "SOX": {
+      "price": "11,614.17",
+      "change": "-317.15",
+      "change_pct": "-2.66%",
+      "is_up": false
+    }
+  },
+  "chips": {
+    "foreign_oi": "-32,450",
+    "foreign_oi_diff": "+1,250",
+    "is_oi_up": true,
+    "pc_ratio": "98.5%",
+    "night_close": "24,580",
+    "night_change": "+145",
+    "is_night_up": true
+  },
+  "settle": {
+    "settle_date": "2026/09/16",
+    "settle_type": "台指期【月結算】",
+    "countdown": "倒數 5 天",
+    "is_today": false
+  },
+  "focus_sectors": [
+    {
+      "sector": "半導體設備 / 先進封裝 (CoWoS)",
+      "catalyst": "台積電 ADR 表現強勢，AI 伺服器供應鏈受資金青睞",
+      "tag": "半導體"
+    },
+    {
+      "sector": "光通訊 / CPO 矽光子",
+      "catalyst": "美股網通大廠算力傳輸需求提升，資金輪動進駐",
+      "tag": "網通題材"
+    },
+    {
+      "sector": "重電與綠能電力",
+      "catalyst": "電網韌性計畫及夏日用電題材維持基本面支撐",
+      "tag": "政策概念"
+    }
+  ],
+  "macro_events": [
+    {
+      "time": "20:30 (今晚)",
+      "event": "美國當週初領失業金人數 (Initial Jobless Claims)",
+      "impact": "高 (High)"
+    },
+    {
+      "time": "明天 20:30",
+      "event": "美國核心 CPI 年增率 / 通膨數據",
+      "impact": "極高 (Critical)"
+    },
+    {
+      "time": "本週",
+      "event": "美股重量級科技股季報發布期",
+      "impact": "中 (Medium)"
+    }
+  ],
+  "ai_brief": "昨夜美股費半與科技股維持多方輪動，美元指數維持平穩。台指夜盤小幅開高，預期今日大盤早盤偏向多方測試開盤區間，留意半導體權值股與高價 IC 設計族群開盤量能配合度。"
+}
