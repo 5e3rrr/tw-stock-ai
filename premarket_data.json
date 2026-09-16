@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026/09/15 08:00:00",
+  "updated_at": "2026/09/16 08:00:00",
   "macro": {
     "DXY": {
-      "price": "99.50",
-      "change": "+0.38",
-      "change_pct": "+0.38%",
+      "price": "99.67",
+      "change": "+0.21",
+      "change_pct": "+0.21%",
       "is_up": true
     },
     "USD_TWD": {
-      "price": "31.68",
+      "price": "31.72",
       "change": "+0.04",
       "change_pct": "+0.13%",
       "is_up": true
@@ -20,46 +20,46 @@
       "is_up": false
     },
     "USD_KRW": {
-      "price": "1,344.64",
-      "change": "-3.53",
-      "change_pct": "-0.26%",
-      "is_up": false
+      "price": "1,345.61",
+      "change": "+0.97",
+      "change_pct": "+0.07%",
+      "is_up": true
     },
     "US10Y": {
-      "price": "4.96",
-      "change": "-0.01",
-      "change_pct": "-0.28%",
-      "is_up": false
+      "price": "5.00",
+      "change": "+0.03",
+      "change_pct": "+0.71%",
+      "is_up": true
     },
     "OIL": {
-      "price": "102.10",
-      "change": "+2.05",
-      "change_pct": "+2.05%",
+      "price": "105.34",
+      "change": "+3.95",
+      "change_pct": "+3.90%",
       "is_up": true
     },
     "DJI": {
-      "price": "52,421.20",
-      "change": "-152.09",
-      "change_pct": "-0.29%",
+      "price": "52,093.11",
+      "change": "-328.09",
+      "change_pct": "-0.63%",
       "is_up": false
     },
     "IXIC": {
-      "price": "26,186.41",
-      "change": "-146.62",
-      "change_pct": "-0.56%",
+      "price": "25,981.57",
+      "change": "-204.84",
+      "change_pct": "-0.78%",
       "is_up": false
     },
     "GSPC": {
-      "price": "7,619.98",
-      "change": "-37.00",
-      "change_pct": "-0.48%",
+      "price": "7,585.73",
+      "change": "-34.25",
+      "change_pct": "-0.45%",
       "is_up": false
     },
     "SOX": {
-      "price": "11,131.28",
-      "change": "-692.72",
-      "change_pct": "-5.86%",
-      "is_up": false
+      "price": "11,175.55",
+      "change": "+44.27",
+      "change_pct": "+0.40%",
+      "is_up": true
     },
     "TSM_ADR": {
       "price": "nan",
@@ -73,7 +73,7 @@
     "foreign_oi_diff": "+1,250",
     "is_oi_up": true,
     "pc_ratio": "82.67%",
-    "max_support": "46,025.29 (月線)",
+    "max_support": "46,025.55 (月線)",
     "max_pressure": "47,578.24 (近期壓力頸線)",
     "night_close": "47,085.00",
     "night_change": "+215.00",
@@ -116,8 +116,8 @@
       "pc_ratio_diff": "▼13.67%",
       "vix": "26.27",
       "vix_diff": "▼0.08",
-      "ma20": "46,025.29 (月線)",
-      "ma60": "45,220.82 (季線)",
+      "ma20": "46,025.55 (月線)",
+      "ma60": "45,210.78 (季線)",
       "support_line": "44,210.31 (近期支撐頸線)",
       "pressure_line": "47,578.24 (近期壓力頸線)"
     },
@@ -130,7 +130,7 @@
   "settle": {
     "settle_date": "2026/10/21",
     "settle_type": "台指期【10月月結算】",
-    "countdown": "倒數 36 天",
+    "countdown": "倒數 35 天",
     "is_today": false
   },
   "focus_sectors": [
@@ -167,5 +167,5 @@
       "impact": "高 (High)"
     }
   ],
-  "ai_brief": "早盤定盤指示：美股費半重挫拖累夜盤，外資期貨空單高達3.2萬口，搭配P/C Ratio降至82.67%，籌碼極度偏空。台股開盤直接面臨20MA月線保衛戰，若失守恐回測60MA季線尋求支撐。權值股承壓下，嚴禁盲目抄底，資金將避險回流高息與能源族群，請嚴格控管倉位並落實停損。"
+  "ai_brief": "各位交易員早。今日盤前市場避險情緒高漲，籌碼面外資期貨淨空單高達32,450口，配合P/C Ratio僅82.67%，顯示多方結構脆弱。夜盤收在47,085點，受美股費半重挫拖累，今日開盤將面臨沉重回檔壓力。技術面重點觀察月線20MA關鍵防守點，若失守恐將下尋季線60MA支撐。盤中嚴格控管倉位並執行停損，切忌盲目追高承接。"
 }
