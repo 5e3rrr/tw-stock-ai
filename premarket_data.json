@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026/09/24 08:00:00",
+  "updated_at": "2026/09/25 08:00:00",
   "macro": {
     "DXY": {
-      "price": "101.13",
-      "change": "+0.70",
-      "change_pct": "+0.70%",
+      "price": "101.28",
+      "change": "+0.18",
+      "change_pct": "+0.18%",
       "is_up": true
     },
     "USD_TWD": {
-      "price": "31.68",
-      "change": "-0.06",
-      "change_pct": "-0.19%",
-      "is_up": false
+      "price": "31.79",
+      "change": "+0.11",
+      "change_pct": "+0.35%",
+      "is_up": true
     },
     "USD_CNH": {
       "price": "--",
@@ -20,46 +20,46 @@
       "is_up": false
     },
     "USD_KRW": {
-      "price": "1,350.36",
-      "change": "-23.32",
-      "change_pct": "-1.70%",
-      "is_up": false
+      "price": "1,362.50",
+      "change": "+12.14",
+      "change_pct": "+0.90%",
+      "is_up": true
     },
     "US10Y": {
-      "price": "5.11",
-      "change": "+0.15",
-      "change_pct": "+3.04%",
+      "price": "5.16",
+      "change": "+0.05",
+      "change_pct": "+0.94%",
       "is_up": true
     },
     "OIL": {
-      "price": "92.04",
-      "change": "-2.55",
-      "change_pct": "-2.70%",
-      "is_up": false
+      "price": "93.95",
+      "change": "+1.79",
+      "change_pct": "+1.94%",
+      "is_up": true
     },
     "DJI": {
-      "price": "51,511.59",
-      "change": "-537.24",
-      "change_pct": "-1.03%",
+      "price": "51,349.98",
+      "change": "-161.61",
+      "change_pct": "-0.31%",
       "is_up": false
     },
     "IXIC": {
-      "price": "26,936.04",
-      "change": "-186.05",
-      "change_pct": "-0.69%",
-      "is_up": false
+      "price": "26,939.37",
+      "change": "+3.33",
+      "change_pct": "+0.01%",
+      "is_up": true
     },
     "GSPC": {
-      "price": "7,706.03",
-      "change": "-58.67",
-      "change_pct": "-0.76%",
+      "price": "7,704.13",
+      "change": "-1.90",
+      "change_pct": "-0.02%",
       "is_up": false
     },
     "SOX": {
-      "price": "12,534.27",
-      "change": "+101.10",
-      "change_pct": "+0.81%",
-      "is_up": true
+      "price": "12,492.54",
+      "change": "-41.74",
+      "change_pct": "-0.33%",
+      "is_up": false
     },
     "TSM_ADR": {
       "price": "nan",
@@ -73,8 +73,8 @@
     "foreign_oi_diff": "+1,250",
     "is_oi_up": true,
     "pc_ratio": "82.67%",
-    "max_support": "46,405.53 (月線)",
-    "max_pressure": "47,750.98 (近期壓力頸線)",
+    "max_support": "46,554.93 (月線)",
+    "max_pressure": "48,341.56 (近期壓力頸線)",
     "night_close": "47,085.00",
     "night_change": "+215.00",
     "is_night_up": true
@@ -116,10 +116,10 @@
       "pc_ratio_diff": "▼13.67%",
       "vix": "26.27",
       "vix_diff": "▼0.08",
-      "ma20": "46,405.53 (月線)",
-      "ma60": "45,224.70 (季線)",
-      "support_line": "44,210.31 (近期支撐頸線)",
-      "pressure_line": "47,750.98 (近期壓力頸線)"
+      "ma20": "46,554.93 (月線)",
+      "ma60": "45,277.32 (季線)",
+      "support_line": "44,925.84 (近期支撐頸線)",
+      "pressure_line": "48,341.56 (近期壓力頸線)"
     },
     "night": {
       "night_close": "47,085.00",
@@ -130,7 +130,7 @@
   "settle": {
     "settle_date": "2026/10/21",
     "settle_type": "台指期【10月月結算】",
-    "countdown": "倒數 27 天",
+    "countdown": "倒數 26 天",
     "is_today": false
   },
   "focus_sectors": [
@@ -167,5 +167,5 @@
       "impact": "高 (High)"
     }
   ],
-  "ai_brief": "受美股重挫與夜盤收在 47,085 點影響，台股開盤面臨極大壓回壓力。外資淨空單高達 32,450 口，加上 P/C Ratio 探至 82.67%，籌碼面極度偏空。技術面嚴密盯緊月線（20MA）防守力道，若破位恐下探季線（60MA）尋求支撐。盤中嚴控倉位與停損，切勿盲目抄底。"
+  "ai_brief": "受美股走弱與夜盤拉回影響，台股開盤承受重壓。外資期貨淨空單仍高達 3.24 萬口，且 P/C Ratio 掉至 82.67%，顯示籌碼面與避險情緒極度偏空。今日重點觀測夜盤落點與多頭防守力道，開盤關鍵在於能否守穩月線(20MA)及季線(60MA)支撐。若跌破恐引發停損賣壓，建議嚴格控管持股成數、切勿盲目接刀。"
 }
