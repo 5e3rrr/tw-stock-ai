@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026/09/29 08:00:00",
+  "updated_at": "2026/09/30 08:00:00",
   "macro": {
     "DXY": {
-      "price": "101.19",
-      "change": "+0.22",
-      "change_pct": "+0.22%",
+      "price": "101.41",
+      "change": "+0.21",
+      "change_pct": "+0.21%",
       "is_up": true
     },
     "USD_TWD": {
       "price": "31.78",
-      "change": "-0.03",
-      "change_pct": "-0.09%",
-      "is_up": false
+      "change": "+0.00",
+      "change_pct": "+0.01%",
+      "is_up": true
     },
     "USD_CNH": {
       "price": "--",
@@ -20,46 +20,46 @@
       "is_up": false
     },
     "USD_KRW": {
-      "price": "1,354.51",
-      "change": "-12.85",
-      "change_pct": "-0.94%",
-      "is_up": false
+      "price": "1,359.56",
+      "change": "+5.05",
+      "change_pct": "+0.37%",
+      "is_up": true
     },
     "US10Y": {
-      "price": "5.24",
-      "change": "+0.06",
-      "change_pct": "+1.08%",
+      "price": "5.26",
+      "change": "+0.02",
+      "change_pct": "+0.29%",
       "is_up": true
     },
     "OIL": {
-      "price": "93.24",
-      "change": "+0.83",
-      "change_pct": "+0.90%",
-      "is_up": true
+      "price": "89.17",
+      "change": "-3.43",
+      "change_pct": "-3.70%",
+      "is_up": false
     },
     "DJI": {
-      "price": "51,481.51",
-      "change": "-347.11",
-      "change_pct": "-0.67%",
+      "price": "51,349.92",
+      "change": "-131.59",
+      "change_pct": "-0.26%",
       "is_up": false
     },
     "IXIC": {
-      "price": "26,820.38",
-      "change": "-248.34",
-      "change_pct": "-0.92%",
+      "price": "26,797.54",
+      "change": "-22.84",
+      "change_pct": "-0.09%",
       "is_up": false
     },
     "GSPC": {
-      "price": "7,683.69",
-      "change": "-59.72",
-      "change_pct": "-0.77%",
+      "price": "7,670.84",
+      "change": "-12.85",
+      "change_pct": "-0.17%",
       "is_up": false
     },
     "SOX": {
-      "price": "12,465.24",
-      "change": "-203.69",
-      "change_pct": "-1.61%",
-      "is_up": false
+      "price": "12,629.16",
+      "change": "+163.92",
+      "change_pct": "+1.32%",
+      "is_up": true
     },
     "TSM_ADR": {
       "price": "nan",
@@ -130,7 +130,7 @@
   "settle": {
     "settle_date": "2026/10/21",
     "settle_type": "台指期【10月月結算】",
-    "countdown": "倒數 22 天",
+    "countdown": "倒數 21 天",
     "is_today": false
   },
   "focus_sectors": [
