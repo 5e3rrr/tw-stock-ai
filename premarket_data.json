@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026/10/27 08:00:00",
+  "updated_at": "2026/10/28 08:00:00",
   "macro": {
     "DXY": {
-      "price": "102.04",
-      "change": "+0.23",
-      "change_pct": "+0.23%",
+      "price": "102.37",
+      "change": "+0.41",
+      "change_pct": "+0.41%",
       "is_up": true
     },
     "USD_TWD": {
-      "price": "32.57",
-      "change": "-0.03",
-      "change_pct": "-0.08%",
+      "price": "32.53",
+      "change": "-0.04",
+      "change_pct": "-0.11%",
       "is_up": false
     },
     "USD_CNH": {
@@ -20,51 +20,51 @@
       "is_up": false
     },
     "USD_KRW": {
-      "price": "1,321.76",
-      "change": "-4.23",
-      "change_pct": "-0.32%",
-      "is_up": false
+      "price": "1,324.77",
+      "change": "+3.01",
+      "change_pct": "+0.23%",
+      "is_up": true
     },
     "US10Y": {
       "price": "4.99",
-      "change": "-0.00",
-      "change_pct": "-0.04%",
-      "is_up": false
+      "change": "+0.01",
+      "change_pct": "+0.14%",
+      "is_up": true
     },
     "OIL": {
-      "price": "100.84",
-      "change": "-2.43",
-      "change_pct": "-2.35%",
+      "price": "101.05",
+      "change": "-0.71",
+      "change_pct": "-0.70%",
       "is_up": false
     },
     "DJI": {
-      "price": "52,361.58",
-      "change": "+146.42",
-      "change_pct": "+0.28%",
+      "price": "52,377.57",
+      "change": "+15.99",
+      "change_pct": "+0.03%",
       "is_up": true
     },
     "IXIC": {
-      "price": "26,169.38",
-      "change": "+214.04",
-      "change_pct": "+0.82%",
+      "price": "26,477.81",
+      "change": "+308.43",
+      "change_pct": "+1.18%",
       "is_up": true
     },
     "GSPC": {
-      "price": "7,676.77",
-      "change": "+53.09",
-      "change_pct": "+0.70%",
+      "price": "7,722.60",
+      "change": "+45.83",
+      "change_pct": "+0.60%",
       "is_up": true
     },
     "SOX": {
-      "price": "11,083.47",
-      "change": "+304.01",
-      "change_pct": "+2.82%",
+      "price": "11,482.50",
+      "change": "+399.04",
+      "change_pct": "+3.60%",
       "is_up": true
     },
     "TSM_ADR": {
-      "price": "424.37",
-      "change": "+5.86",
-      "change_pct": "+1.40%",
+      "price": "436.87",
+      "change": "+12.50",
+      "change_pct": "+2.95%",
       "is_up": true
     }
   },
@@ -73,7 +73,7 @@
     "foreign_oi_diff": "+1,250",
     "is_oi_up": true,
     "pc_ratio": "82.67%",
-    "max_support": "47,984.15 (月線)",
+    "max_support": "47,915.46 (月線)",
     "max_pressure": "49,968.92 (近期壓力頸線)",
     "night_close": "47,085.00",
     "night_change": "+215.00",
@@ -116,9 +116,9 @@
       "pc_ratio_diff": "▼13.67%",
       "vix": "26.27",
       "vix_diff": "▼0.08",
-      "ma20": "47,984.15 (月線)",
-      "ma60": "46,281.22 (季線)",
-      "support_line": "45,912.79 (近期支撐頸線)",
+      "ma20": "47,915.46 (月線)",
+      "ma60": "46,393.62 (季線)",
+      "support_line": "45,676.67 (近期支撐頸線)",
       "pressure_line": "49,968.92 (近期壓力頸線)"
     },
     "night": {
@@ -130,23 +130,23 @@
   "settle": {
     "settle_date": "2026/10/28",
     "settle_type": "台指期【10月月結算】",
-    "countdown": "倒數 1 天",
-    "is_today": false
+    "countdown": "今日結算日",
+    "is_today": true
   },
   "focus_sectors": [
     {
-      "sector": "高殖利率與防禦型傳產",
-      "catalyst": "美股受通膨疑慮全面收黑，避險資金傾向回流高息防禦資產",
+      "sector": "高息防禦族群",
+      "catalyst": "避險資金回流",
       "tag": "防禦概念"
     },
     {
-      "sector": "塑化與能源原物料",
-      "catalyst": "國際油價飆升帶動原物料報價走強，利於上游族群表現",
-      "tag": "能源原物料"
+      "sector": "塑化能源",
+      "catalyst": "油價飆升利多",
+      "tag": "能源"
     },
     {
-      "sector": "半導體設備與先進封裝",
-      "catalyst": "費半指數重挫逾2%，權值電子股早盤承壓需觀察低檔支撐力道",
+      "sector": "半導體權值",
+      "catalyst": "費半重挫面臨測底",
       "tag": "半導體"
     }
   ],
@@ -167,5 +167,5 @@
       "impact": "高 (High)"
     }
   ],
-  "ai_brief": "昨夜美股受 PPI 通膨超預期與油價飆升影響全面收黑，台指夜盤在 47,085 點附近震盪收高。操作宜緊盯月線(20MA)與季線(60MA)等關鍵技術支撐防守力道。"
+  "ai_brief": "受美股費半重挫影響，台指夜盤震盪回檔至 47,085 點。外資期貨空單維持 3.2 萬口高檔，搭配 P/C Ratio 降至 82.67%，顯示籌碼面極度偏空。開盤重點觀察月線 20MA 與季線 60MA 關卡能否展現實質支撐。操作上務必嚴格控管倉位與槓桿，嚴防開低破位風險，策略以避險防禦為優先。"
 }
