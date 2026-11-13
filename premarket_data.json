@@ -1,17 +1,17 @@
 {
-  "updated_at": "2026/11/12 08:00:00",
+  "updated_at": "2026/11/13 08:00:00",
   "macro": {
     "DXY": {
-      "price": "102.97",
-      "change": "+0.74",
-      "change_pct": "+0.73%",
+      "price": "103.17",
+      "change": "+0.26",
+      "change_pct": "+0.25%",
       "is_up": true
     },
     "USD_TWD": {
-      "price": "32.95",
-      "change": "+0.17",
-      "change_pct": "+0.50%",
-      "is_up": true
+      "price": "32.86",
+      "change": "-0.09",
+      "change_pct": "-0.28%",
+      "is_up": false
     },
     "USD_CNH": {
       "price": "--",
@@ -20,52 +20,52 @@
       "is_up": false
     },
     "USD_KRW": {
-      "price": "1,341.91",
-      "change": "-1.93",
-      "change_pct": "-0.14%",
+      "price": "1,336.26",
+      "change": "-5.65",
+      "change_pct": "-0.42%",
       "is_up": false
     },
     "US10Y": {
-      "price": "5.00",
-      "change": "+0.02",
-      "change_pct": "+0.30%",
+      "price": "5.10",
+      "change": "+0.10",
+      "change_pct": "+2.10%",
       "is_up": true
     },
     "OIL": {
-      "price": "85.25",
-      "change": "-0.79",
-      "change_pct": "-0.92%",
-      "is_up": false
+      "price": "88.74",
+      "change": "+2.21",
+      "change_pct": "+2.55%",
+      "is_up": true
     },
     "DJI": {
-      "price": "52,486.50",
-      "change": "+254.61",
-      "change_pct": "+0.49%",
-      "is_up": true
+      "price": "52,297.10",
+      "change": "-189.39",
+      "change_pct": "-0.36%",
+      "is_up": false
     },
     "IXIC": {
-      "price": "25,466.19",
-      "change": "+400.32",
-      "change_pct": "+1.60%",
-      "is_up": true
+      "price": "25,366.09",
+      "change": "-100.10",
+      "change_pct": "-0.39%",
+      "is_up": false
     },
     "GSPC": {
-      "price": "7,619.38",
-      "change": "+98.45",
-      "change_pct": "+1.31%",
-      "is_up": true
+      "price": "7,592.40",
+      "change": "-26.98",
+      "change_pct": "-0.35%",
+      "is_up": false
     },
     "SOX": {
-      "price": "10,564.11",
-      "change": "+565.78",
-      "change_pct": "+5.66%",
-      "is_up": true
+      "price": "10,506.67",
+      "change": "-57.44",
+      "change_pct": "-0.54%",
+      "is_up": false
     },
     "TSM_ADR": {
-      "price": "413.35",
-      "change": "+16.87",
-      "change_pct": "+4.25%",
-      "is_up": true
+      "price": "405.49",
+      "change": "-7.86",
+      "change_pct": "-1.90%",
+      "is_up": false
     }
   },
   "chips_summary": {
@@ -73,8 +73,8 @@
     "foreign_oi_diff": "+1,250",
     "is_oi_up": true,
     "pc_ratio": "82.67%",
-    "max_support": "44,908.56 (月線)",
-    "max_pressure": "49,059.12 (近期壓力頸線)",
+    "max_support": "44,641.80 (月線)",
+    "max_pressure": "48,382.75 (近期壓力頸線)",
     "night_close": "47,085.00",
     "night_change": "+215.00",
     "is_night_up": true
@@ -116,10 +116,10 @@
       "pc_ratio_diff": "▼13.67%",
       "vix": "26.27",
       "vix_diff": "▼0.08",
-      "ma20": "44,908.56 (月線)",
-      "ma60": "46,259.66 (季線)",
+      "ma20": "44,641.80 (月線)",
+      "ma60": "46,217.65 (季線)",
       "support_line": "37,837.05 (近期支撐頸線)",
-      "pressure_line": "49,059.12 (近期壓力頸線)"
+      "pressure_line": "48,382.75 (近期壓力頸線)"
     },
     "night": {
       "night_close": "47,085.00",
@@ -130,7 +130,7 @@
   "settle": {
     "settle_date": "2026/11/18",
     "settle_type": "台指期【月結算】",
-    "countdown": "倒數 6 天",
+    "countdown": "倒數 5 天",
     "is_today": false
   },
   "focus_sectors": [
