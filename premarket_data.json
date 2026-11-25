@@ -1,16 +1,16 @@
 {
-  "updated_at": "2026/11/24 08:00:00",
+  "updated_at": "2026/11/25 08:00:00",
   "macro": {
     "DXY": {
-      "price": "104.32",
-      "change": "+0.51",
-      "change_pct": "+0.49%",
-      "is_up": true
+      "price": "103.81",
+      "change": "-0.51",
+      "change_pct": "-0.49%",
+      "is_up": false
     },
     "USD_TWD": {
-      "price": "32.95",
-      "change": "-0.07",
-      "change_pct": "-0.22%",
+      "price": "32.85",
+      "change": "-0.11",
+      "change_pct": "-0.32%",
       "is_up": false
     },
     "USD_CNH": {
@@ -20,52 +20,52 @@
       "is_up": false
     },
     "USD_KRW": {
-      "price": "1,344.31",
-      "change": "+9.52",
-      "change_pct": "+0.71%",
-      "is_up": true
-    },
-    "US10Y": {
-      "price": "4.92",
-      "change": "+0.01",
-      "change_pct": "+0.12%",
-      "is_up": true
-    },
-    "OIL": {
-      "price": "80.17",
-      "change": "-3.81",
-      "change_pct": "-4.54%",
+      "price": "1,341.02",
+      "change": "-3.29",
+      "change_pct": "-0.24%",
       "is_up": false
     },
+    "US10Y": {
+      "price": "4.90",
+      "change": "-0.01",
+      "change_pct": "-0.28%",
+      "is_up": false
+    },
+    "OIL": {
+      "price": "82.05",
+      "change": "+1.88",
+      "change_pct": "+2.35%",
+      "is_up": true
+    },
     "DJI": {
-      "price": "49,595.31",
-      "change": "+1447.98",
-      "change_pct": "+3.01%",
+      "price": "50,018.70",
+      "change": "+423.39",
+      "change_pct": "+0.85%",
       "is_up": true
     },
     "IXIC": {
-      "price": "24,089.56",
-      "change": "+1471.83",
-      "change_pct": "+6.51%",
-      "is_up": true
+      "price": "23,733.54",
+      "change": "-356.02",
+      "change_pct": "-1.48%",
+      "is_up": false
     },
     "GSPC": {
-      "price": "7,237.17",
-      "change": "+326.78",
-      "change_pct": "+4.73%",
-      "is_up": true
+      "price": "7,201.09",
+      "change": "-36.08",
+      "change_pct": "-0.50%",
+      "is_up": false
     },
     "SOX": {
-      "price": "9,588.05",
-      "change": "+1179.46",
-      "change_pct": "+14.03%",
-      "is_up": true
+      "price": "8,832.50",
+      "change": "-755.55",
+      "change_pct": "-7.88%",
+      "is_up": false
     },
     "TSM_ADR": {
-      "price": "363.60",
-      "change": "+44.89",
-      "change_pct": "+14.08%",
-      "is_up": true
+      "price": "349.20",
+      "change": "-14.40",
+      "change_pct": "-3.96%",
+      "is_up": false
     }
   },
   "chips_summary": {
@@ -73,8 +73,8 @@
     "foreign_oi_diff": "+1,250",
     "is_oi_up": true,
     "pc_ratio": "82.67%",
-    "max_support": "41,959.40 (月線)",
-    "max_pressure": "47,060.46 (近期壓力頸線)",
+    "max_support": "41,517.39 (月線)",
+    "max_pressure": "47,015.45 (近期壓力頸線)",
     "night_close": "47,085.00",
     "night_change": "+215.00",
     "is_night_up": true
@@ -116,10 +116,10 @@
       "pc_ratio_diff": "▼13.67%",
       "vix": "26.27",
       "vix_diff": "▼0.08",
-      "ma20": "41,959.40 (月線)",
-      "ma60": "45,494.29 (季線)",
+      "ma20": "41,517.39 (月線)",
+      "ma60": "45,367.01 (季線)",
       "support_line": "35,442.41 (近期支撐頸線)",
-      "pressure_line": "47,060.46 (近期壓力頸線)"
+      "pressure_line": "47,015.45 (近期壓力頸線)"
     },
     "night": {
       "night_close": "47,085.00",
@@ -130,23 +130,23 @@
   "settle": {
     "settle_date": "2026/11/25",
     "settle_type": "台指期【月結算】",
-    "countdown": "倒數 1 天",
-    "is_today": false
+    "countdown": "今日結算日",
+    "is_today": true
   },
   "focus_sectors": [
     {
-      "sector": "高殖利率與防禦型傳產",
-      "catalyst": "美股受通膨疑慮全面收黑，避險資金傾向回流高息防禦資產",
+      "sector": "高息防禦族群",
+      "catalyst": "避險資金回流",
       "tag": "防禦概念"
     },
     {
-      "sector": "塑化與能源原物料",
-      "catalyst": "國際油價飆升帶動原物料報價走強，利於上游族群表現",
-      "tag": "能源原物料"
+      "sector": "塑化能源",
+      "catalyst": "油價飆升利多",
+      "tag": "能源"
     },
     {
-      "sector": "半導體設備與先進封裝",
-      "catalyst": "費半指數重挫逾2%，權值電子股早盤承壓需觀察低檔支撐力道",
+      "sector": "半導體權值",
+      "catalyst": "費半重挫面臨測底",
       "tag": "半導體"
     }
   ],
@@ -167,5 +167,5 @@
       "impact": "高 (High)"
     }
   ],
-  "ai_brief": "昨夜美股受 PPI 通膨超預期與油價飆升影響全面收黑，台指夜盤在 47,085 點附近震盪收高。操作宜緊盯月線(20MA)與季線(60MA)等關鍵技術支撐防守力道。"
+  "ai_brief": "各位交易員早。夜盤期指收在 47,085 點，受美股科技股下挫影響，開盤承壓。籌碼面外資期貨空單高懸 -32,450 口，搭配 P/C Ratio 探至 82.67%，顯示市場避險情緒極度高漲。技術面今日多方首要防守區域為月線(20MA)，若早盤開低棄守，恐引發多頭停損並加速回測季線(60MA)。操作上記律至上，嚴控倉位。"
 }
